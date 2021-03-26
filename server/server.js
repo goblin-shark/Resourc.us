@@ -22,7 +22,7 @@ app.get('/*', function (req, res) {
         }
     })
 })
-// node server/server.js
+
 // GLOBAL ERROR HANDLER
 app.use((err, req, res, next) => {
     const defaultErr = {

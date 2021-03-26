@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const MONGO_URI = 'mongodb+srv://goblinshark:goblinshark@cluster0.2j9ni.mongodb.net/';
 
-// avatar
-// name
-// category (pre determined)
-// description
-
 mongoose.connect(MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,

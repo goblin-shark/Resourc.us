@@ -17,7 +17,7 @@ teamController.createTeam = (req, res, next) => {
         })
         .catch(err => {
             next({
-                log: `verifyEmail - ERROR: ${err}`,
+                log: `Create Team - ERROR: ${err}`,
                 message: {
                     err: 'Error occured in teamController.createTeam',
                     message: err
@@ -27,7 +27,21 @@ teamController.createTeam = (req, res, next) => {
 }
 
 teamController.listTeams = (req, res, next) => {
-    next();
+    Team.find({})
+        .then(data => {
+            res.locals.response = data;
+            console.log('teamController.listTeams:', 'list found')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List Teams - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in teamController.createTeam',
+                    message: err
+                }
+            })
+        });
 }
 
 module.exports = teamController;
