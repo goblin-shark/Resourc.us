@@ -6,7 +6,7 @@ router.get('/list',
     teamController.listTeams,
     (req, res) => {
         // console.log('newsletter router is working');
-        res.status(200).json(res.locals.response);
+        res.status(200).json({});
     }
 );
 
@@ -14,6 +14,8 @@ router.post('/create',
     teamController.createTeam,
     (req, res) => {
         // console.log('newsletter router is working');
-        res.status(200).json(res.locals.response);
+        res.status(200).json({});
     }
 );
+
+module.exports = router;
