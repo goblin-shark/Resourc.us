@@ -13,8 +13,9 @@ router.get('/list',
 router.post('/create',
     teamController.createTeam,
     (req, res) => {
-        // console.log('newsletter router is working');
-        res.status(200).json({});
+        console.log('team router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
     }
 );
 
