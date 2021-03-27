@@ -16,6 +16,13 @@ To run in hot module reloading mode:
 npm start
 ```
 
+To run the server:
+
+```sh
+npm run server
+```
+
+
 To create a production build:
 
 ```sh
@@ -30,7 +37,7 @@ npm run build-dev
 
 ## Running
 
-Open the file `dist/index.html` in your browser
+Run server and (production or development build) then open `localhost:3000` in your browser
 
 ## Credits
 
