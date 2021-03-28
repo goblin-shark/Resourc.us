@@ -1,23 +1,23 @@
-const { User } = require('../model/userModel');
+const { User } = require('../models/userModel');
 const userController = {};
 
-userController.storeUser = (req, res, next) => {
+userController.createUser = (req, res, next) => {
 	const requestBody = req.body;
-	console.log('userController.storeUser:', 'reached controller');
+	console.log('userController.createUser:', 'reached controller');
 	User.create({
 		email: requestBody.email,
-		hash: requestBody.hash
+		hash: requestBody.hash,
 	})
 		.then(data => {
 			res.locals.response = data;
-			console.log('userController.storeUser:', data);
+			console.log('userController.createUser:', data);
 			next();
 		})
 		.catch(err => {
 			next({
-				log: `storeUser - ERROR: ${err}`,
+				log: `createUser - ERROR: ${err}`,
 				message: { 
-					err: 'Error occured in userController.storeUser',
+					err: 'Error occured in userController.createUser',
 					message: err
 				}
 			}) 

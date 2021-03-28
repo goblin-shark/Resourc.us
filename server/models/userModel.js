@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     email: { type: String, required: [true, "can't be blank"], unique: true, index: true },
-	hash: { type: String, required: [true, "can't be blank"], min: [8, 'Not enough characters'] }
+		hash: { type: String, required: [true, "can't be blank"], min: [8, 'Not enough characters'] }
 }, { timestamps: true });
 
 const saltRounds = 10;

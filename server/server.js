@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const db = require('./models/db');
 
+const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
 
 const PORT = 3000;
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
+app.use('/user', userRouter);
 app.use('/teams', teamRouter);
 
 // Renders index.html with static assets
