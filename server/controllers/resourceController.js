@@ -5,8 +5,8 @@ resourceController.createResource = (req, res, next) => {
     const requestBody = req.body;
 
     Resource.create({
-        title: requestBody.title,
         link: requestBody.link,
+        teamId: requestBody.teamId,
     })
         .then(data => {
             res.locals.response = data;
