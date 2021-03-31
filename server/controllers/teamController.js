@@ -1,4 +1,4 @@
-const { Team } = require('../model/teamsModel');
+const { Team } = require('../models/teamsModel');
 const teamController = {};
 
 teamController.createTeam = (req, res, next) => {
