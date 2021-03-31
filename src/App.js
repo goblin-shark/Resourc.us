@@ -7,7 +7,7 @@ import { SignupPage } from './pages/signup';
 import { LoginPage } from './pages/login';
 import { AllTeamsPage } from './pages/teams';
 
-function App() {  
+function App() {
   return (
     <div className="App">
       <nav className="navbar">
