@@ -62,7 +62,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       appMountId: 'app',
-      filename: 'index.html'
+      filename: './src/index.html'
     })
   ],
   devServer: {
