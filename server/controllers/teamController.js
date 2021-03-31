@@ -37,7 +37,7 @@ teamController.listTeams = (req, res, next) => {
             next({
                 log: `List Teams - ERROR: ${err}`,
                 message: {
-                    err: 'Error occured in teamController.createTeam',
+                    err: 'Error occured in teamController.listTeams',
                     message: err
                 }
             })

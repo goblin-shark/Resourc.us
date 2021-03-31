@@ -1,4 +1,4 @@
-import React, { useState } from "React";
+import React, { useState } from "react";
 // import axios from "axios";
 
 function createTeam() {
@@ -9,14 +9,15 @@ function createTeam() {
     description: "",
     category: "",
   });
+
   function handleChange(event) {
-    const { key, value } = event.target;
+    const { key, value } = event.target; //event target is each indivisual form that is being inputed
 
     setPayload((prevPayload) => {
-      //   return {
-      //     ...prevPayload,
-      //     [name]:value
-      //   }
+        // return {
+        //   ...prevPayload,
+        //   [key]:value
+        // }
       var newPayload = prevPayload;
 
       if (key === "title") {
@@ -61,7 +62,7 @@ function createTeam() {
           <input
             onChange={handleChange}
             key="title"
-            value={input.title}
+            value={_payload.title}
             autoComplete="off"
             className="form-control"
             placeholder="Team Name"
@@ -71,7 +72,7 @@ function createTeam() {
           <input
             onChange={handleChange}
             key="avatar"
-            value={input.avatar}
+            value={_payload.avatar}
             autoComplete="off"
             className="form-control"
             placeholder="Avatar"
@@ -81,7 +82,7 @@ function createTeam() {
           <input
             onChange={handleChange}
             key="description"
-            value={input.description}
+            value={_payload.description}
             autoComplete="off"
             className="form-control"
             placeholder="Description"
@@ -91,7 +92,7 @@ function createTeam() {
           <input
             onChange={handleChange}
             key="category"
-            value={input.category}
+            value={_payload.category}
             autoComplete="off"
             className="form-control"
             placeholder="Category"
