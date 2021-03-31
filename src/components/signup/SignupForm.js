@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 export const SignupForm = () => {
+  const [values, setValues] = useState({
+		email: '',
+		password: ''
+	});
   const { register, handleSubmit } = useForm()
   const history = useHistory()
 
