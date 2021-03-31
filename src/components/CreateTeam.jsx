@@ -11,47 +11,32 @@ function createTeam() {
   });
 
   function handleChange(event) {
-    const { key, value } = event.target; //event target is each indivisual form that is being inputed
+    const { name, value } = event.target; //event target is each indivisual form that is being inputed
 
-    setPayload((prevPayload) => {
-        // return {
-        //   ...prevPayload,
-        //   [key]:value
-        // }
-      var newPayload = prevPayload;
-
-      if (key === "title") {
-        newPayload.title = value;
-      } else if (key === "avatar") {
-        newPayload.avatar = value;
-      } else if (key === "description") {
-        newPayload.description = value;
-      } else if (key === "category") {
-        newPayload.category = value;
-      }
-      console.log(newPayload)
-      return newPayload;
-      
-    });
+    setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
   function handleClick(event) {
     event.preventDefault();
     //test if server is working
-    console.log(this._payload);
+    console.log(_payload);
     // POST the payload to database
     fetch("http://localhost:3000/teams/create", {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(this._payload)
-    }).then(response => {
-      response.json(); 
-    }).then(data => {
-      console.log('Post Success: ', data)
-    }).catch(err => {
-      console.log('Post Fail', err)
+      body: JSON.stringify(_payload),
     })
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => {
+        console.log("Post Success: ", data);
+      })
+      .catch((err) => {
+        console.log("Post Fail", err);
+      });
+    // ADD RESET STATE HERE AFTER SUMBIT
   }
 
   return (
@@ -61,9 +46,9 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            key="title"
+            name="title"
             value={_payload.title}
-            autoComplete="off"
+            // value=
             className="form-control"
             placeholder="Team Name"
           ></input>
@@ -71,9 +56,8 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            key="avatar"
+            name="avatar"
             value={_payload.avatar}
-            autoComplete="off"
             className="form-control"
             placeholder="Avatar"
           ></input>
@@ -81,9 +65,8 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            key="description"
+            name="description"
             value={_payload.description}
-            autoComplete="off"
             className="form-control"
             placeholder="Description"
           ></input>
@@ -91,9 +74,8 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            key="category"
+            name="category"
             value={_payload.category}
-            autoComplete="off"
             className="form-control"
             placeholder="Category"
           ></input>
