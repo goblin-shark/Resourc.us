@@ -11,6 +11,24 @@ router.post('/create',
     }
 );
 
+router.post('/list',
+    resourceController.listResources,
+    (req, res) => {
+        console.log('list resources router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
+router.post('/listAll',
+    resourceController.listAllResources,
+    (req, res) => {
+        console.log('list all resources router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
 router.post('/upvote',
     resourceController.upvoteResource,
     (req, res) => {
