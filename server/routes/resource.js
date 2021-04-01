@@ -20,7 +20,7 @@ router.post('/list',
     }
 );
 
-router.post('/listAll',
+router.get('/listAll',
     resourceController.listAllResources,
     (req, res) => {
         console.log('list all resources router is working');
