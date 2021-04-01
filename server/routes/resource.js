@@ -11,4 +11,13 @@ router.post('/create',
     }
 );
 
+router.post('/upvote',
+    resourceController.upvoteResource,
+    (req, res) => {
+        console.log('upvote resource router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
 module.exports = router;
