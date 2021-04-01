@@ -3,7 +3,8 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {Link} from 'react-router-dom';
-//bootstrap components
+
+// bootstrap components
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
@@ -16,7 +17,7 @@ function Navbars() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-        <h4><Link to='/'>Home</Link></h4>
+          <h4><Link to='/'>Home</Link></h4>
           <h4><Link to='/teams'>Teams</Link></h4>
           <h4><Link to='/CreateResource'>Create Resource</Link></h4>
           <h4><Link to='/CreateTeam'>Create Team</Link></h4>
