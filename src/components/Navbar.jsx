@@ -17,7 +17,7 @@ function Navbars() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
         <h4><Link to='/'>Home</Link></h4>
-          <h4><Link to='/Teams'>Teams</Link></h4>
+          <h4><Link to='/teams'>Teams</Link></h4>
           <h4><Link to='/CreateResource'>Create Resource</Link></h4>
           <h4><Link to='/CreateTeam'>Create Team</Link></h4>
           <h4><Link to='/login'>Login</Link></h4>

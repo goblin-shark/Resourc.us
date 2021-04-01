@@ -9,26 +9,29 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup"
+import Teams from "./pages/Teams";
 
 // import components
 import Navbars from "./components/Navbar";
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
-import Teams from "./components/Teams";
+
 
 function App() {
   return (
-    <Router>
-      <h1>Resource Sharing App (placeholder title)</h1>
+    <div className="App">
+      <Router>
+        <h1>Resource Sharing App (placeholder title)</h1>
 
-      <Navbars />
-      <Route path="/" exact>{<Home></Home>}</Route>
-      <Route path="/Teams">{<Teams></Teams>}</Route>
-      <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
-      <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
-      <Route path="/signup">{<SignupPage></SignupPage>}</Route>
-      <Route path="/login">{<LoginPage></LoginPage>}</Route>
-    </Router>
+        <Navbars />
+        <Route path="/" exact>{<Home></Home>}</Route>
+        <Route path="/teams">{<Teams></Teams>}</Route>
+        <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
+        <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
+        <Route path="/signup">{<SignupPage></SignupPage>}</Route>
+        <Route path="/login">{<LoginPage></LoginPage>}</Route>
+      </Router>
+    </div>
   );
 }
 export default App;
