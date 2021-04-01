@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 
 
 function Teams() {
@@ -6,9 +6,11 @@ function Teams() {
 
   useEffect(() => {
     fetch("http://localhost:3000/teams/list").then(response => {
-      response.json(); //Parses to JSON
+      
+      return response.json(); //Parses to JSON
     }).then(data => {
       setTeams(data);
+      // console.log(data); ENDLESS RUNNING BUG!?
     }).catch(err => {
       console.log('GET FAILED', err);
     })
@@ -17,9 +19,9 @@ function Teams() {
     <div className='container'>
       <h1>Teams Page</h1>
       {_teams.map( team => 
-        <div>
-          <h1>{team.title}</h1>
-          <h1>{team.avatar}</h1>
+        <div key={team.name}>
+          <h1>{team.name}</h1>
+          <h1>{team.image}</h1>
           <h1>{team.description}</h1>
           <h1>{team.category}</h1>
         </div>

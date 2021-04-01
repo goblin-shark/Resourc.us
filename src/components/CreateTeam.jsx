@@ -4,8 +4,8 @@ import React, { useState } from "react";
 function createTeam() {
   //state
   const [_payload, setPayload] = useState({
-    title: "",
-    avatar: "",
+    name: "",
+    image: "",
     description: "",
     category: "",
   });
@@ -23,15 +23,16 @@ function createTeam() {
     fetch("http://localhost:3000/teams/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(_payload),
+      body: JSON.stringify(_payload)
     })
       .then((response) => {
-        response.json();
+        return response.json();
       })
       .then((data) => {
-        console.log("Post Success: ", data);
+        console.log(data);
       })
       .catch((err) => {
         console.log("Post Fail", err);
@@ -46,8 +47,8 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            name="title"
-            value={_payload.title}
+            name="name"
+            value={_payload.name}
             // value=
             className="form-control"
             placeholder="Team Name"
@@ -56,8 +57,8 @@ function createTeam() {
         <div className="form-group">
           <input
             onChange={handleChange}
-            name="avatar"
-            value={_payload.avatar}
+            name="image"
+            value={_payload.image}
             className="form-control"
             placeholder="Avatar"
           ></input>
