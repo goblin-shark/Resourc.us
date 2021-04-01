@@ -2,18 +2,19 @@ import React from "react";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-//import router
+// import router
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-//import components
-import Navbars from "./components/Navbar";
+// import pages
 import Home from "./pages/Home";
-import Login from "./components/Login";
+import LoginPage from "./pages/Login";
+
+// import components
+import Navbars from "./components/Navbar";
+
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
 import Teams from "./components/Teams";
-
-
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <Route path="/Teams">{<Teams></Teams>}</Route>
       <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
       <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
-      <Route path="/login">{<Login></Login>}</Route>
+      <Route path="/login">{<LoginPage></LoginPage>}</Route>
     </Router>
   );
 }
