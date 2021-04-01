@@ -11,7 +11,8 @@
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
     "start": "webpack serve --hot --mode development",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "restart": "npm run build-dev && npm run server"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
