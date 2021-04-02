@@ -1,29 +1,28 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 export const LoginForm = () => {
-  const { register, handleSubmit } = useForm()
+  // const { register, handleSubmit } = useForm()
   const history = useHistory()
 
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
-  const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data))
-    // redirect to Homepage after successful login
-    history.push('/')
-  })
+  // const onSubmit = handleSubmit((data) => {
+  //   alert(JSON.stringify(data))
+  //   history.push('/')
+  // })
 
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div className="form-group">
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" ref={register}></input>
+        <input type="email" name="email" id="email"></input>
       </div>
 
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" ref={register}></input>
+        <input type="password" name="password" id="password"></input>
       </div>
 
       <div className="form-group">

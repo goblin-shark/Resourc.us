@@ -3,14 +3,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  devtool: 'eval-cheap-source-map',
   module: {
     rules: [
       {
@@ -54,19 +52,13 @@ const config = {
     extensions: [
       '.js',
       '.jsx'
-    ],
-    alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/index.html"),
     })
-  ],
-  devServer: {
-    contentBase: './dist'
-  }
+  ]
 };
 
 module.exports = config;

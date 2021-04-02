@@ -10,7 +10,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "start": "webpack serve --hot --mode development",
+    "start": "webpack serve --hot --mode development --port 3000",
     "server": "nodemon server/server.js"
   },
   "dependencies": {
@@ -23,8 +23,6 @@
     "popper.js": "^1.16.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^6.15.5",
-    "react-hot-loader": "^4.13.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
@@ -33,7 +31,6 @@
     "babel-loader": "^8.2.2",
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
-    "@hot-loader/react-dom": "^17.0.1+4.13.0",
     "css-loader": "^5.2.0",
     "style-loader": "^2.0.0",
     "eslint": "^7.22.0",

@@ -1,6 +1,5 @@
 
 import React from "react";
-import { hot } from 'react-hot-loader/root';
 import { Switch, Route, Link } from 'react-router-dom';
 import { HomePage } from './pages/home';
 import { SignupPage } from './pages/signup';
@@ -43,4 +42,4 @@ function App() {
   );
 }
 
-export default hot(App);
+export default App;
