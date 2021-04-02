@@ -66,12 +66,13 @@ resourceController.listAllResources = (req, res, next) => {
 
 resourceController.upvoteResource = (req, res, next) => {
     const requestBody = req.body;
+    const numVotes = requestBody.upvote ? 1 : -1;
 
     Resource.findOneAndUpdate({
         link: requestBody.link,
         teamId: requestBody.teamId,
     }, {
-        votes: requestBody.votes + 1,
+        votes: requestBody.votes + numVotes,
     },
         {
             returnNewDocument: true
