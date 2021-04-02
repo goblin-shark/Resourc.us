@@ -7,7 +7,7 @@ const teamSchema = new Schema({
     category: { type: String, required: true },
     description: { type: String },
     userCount: { type: Number },
-    resourceCount: { type: Number }
+    resourceCount: { type: Number },
 }, { timestamps: true });
 
 var Team = mongoose.model('Team', teamSchema);
