@@ -5,15 +5,15 @@ function Teams() {
   const [_teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/teams/list")
-      .then(response => {
-        return response.json(); //Parses to JSON
-      }).then(data => {
-        setTeams(data);
-        console.log(data);
-      }).catch(err => {
-        console.log('GET FAILED', err);
-      })
+    fetch("http://localhost:3000/teams/list").then(response => {
+
+      return response.json(); //Parses to JSON
+    }).then(data => {
+      setTeams(data);
+      // console.log(data); ENDLESS RUNNING BUG!?
+    }).catch(err => {
+      console.log('GET FAILED', err);
+    })
   })
 
   return (

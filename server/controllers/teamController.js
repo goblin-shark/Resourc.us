@@ -31,7 +31,6 @@ teamController.listTeams = (req, res, next) => {
         .then(data => {
             res.locals.response = data;
             console.log('teamController.listTeams:', 'list found')
-            console.log("TEAMS FOUND: ", data)
             next();
         })
         .catch(err => {
@@ -50,7 +49,6 @@ teamController.listThreeTeams = (req, res, next) => {
         .then(data => {
             res.locals.response = data;
             console.log('teamController.listThreeTeams:', '3 list found')
-            console.log("TEAMS FOUND: ", data)
             next();
         })
         .catch(err => {
