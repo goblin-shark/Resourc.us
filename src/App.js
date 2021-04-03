@@ -1,7 +1,7 @@
 import React from "react";
 
 // import router
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // import pages
 import Home from "./pages/Home";
@@ -22,13 +22,21 @@ function App() {
       <Router>
         <div className="outerContainer">
           <Navbars />
-          <Route path="/" exact>{<Home></Home>}</Route>
-          <Route path="/teams">{<Teams></Teams>}</Route>
-          <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
-          <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
-          <Route path="/signup">{<SignupPage></SignupPage>}</Route>
-          <Route path="/login">{<LoginPage></LoginPage>}</Route>
-          <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
+          <div className="innerContainer">
+            <header className="mainHeader">
+            <ul>
+              <li><Link to='/login'>Login</Link></li>
+              <li><Link to='/signup'>Signup</Link></li>
+            </ul>
+            </header>
+            <Route path="/" exact>{<Home></Home>}</Route>
+            <Route path="/teams">{<Teams></Teams>}</Route>
+            <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
+            <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
+            <Route path="/signup">{<SignupPage></SignupPage>}</Route>
+            <Route path="/login">{<LoginPage></LoginPage>}</Route>
+            <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
+          </div>
         </div>
       </Router>
     </div>

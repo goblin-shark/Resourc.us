@@ -23,8 +23,6 @@ function Navbars() {
             <li><Link to='/teams'>Teams</Link></li>
             <li><Link to='/CreateResource'>Create Resource</Link></li>
             <li><Link to='/CreateTeam'>Create Team</Link></li>
-            <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/signup'>Signup</Link></li>
           </ul>
         </Nav>
         {/* <Form inline>

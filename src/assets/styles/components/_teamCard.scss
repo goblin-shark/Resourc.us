@@ -43,13 +43,18 @@
     .meta {
         div {
             font-size: 0.75rem;
-            background-color: #343a40;
+            background-color: #838d96;
             display: inline-block;
             padding: 0.25em 0.4em;
             border-radius: 3px;
             color: #fff;
             font-weight: 700;
             letter-spacing: 0.015rem;
+            margin-right: 0.25rem;
+            &:first-child {
+                background-color: #343a40;
+                margin-right: 0.5rem;
+            }
         }
     }
     article {
