@@ -45,8 +45,8 @@ function Teams() {
           <section>
             <div className="meta">
               <div>{team.category}</div>
-              <div><i class='bx bx-merge'></i> 342</div>
-              <div><i class='bx bxs-user-account'></i> 24</div>
+              <div><i className='bx bx-merge'></i> 342</div>
+              <div><i className='bx bxs-user-account'></i> 24</div>
             </div>
             <article>
               <p>{team.description}</p>
