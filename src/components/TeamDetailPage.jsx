@@ -27,8 +27,9 @@ function TeamDetailPage ({ match }) {
       fetch("http://localhost:3000/resource/listAll")
       .then(response => response.json())
       .then(data => {
+        const currentResources = data.filter(r => r.teamId === id)
         console.log("resources: ", data)
-        setTeamResources(data)
+        setTeamResources(currentResources)
       })
     })
     .catch(err => {
