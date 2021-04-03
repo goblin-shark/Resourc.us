@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 import { Link } from 'react-router-dom';
 import { LoginForm } from '../components/login/LoginForm';
 
-export const LoginPage = () => {
+function LoginPage () {
   return (
     <div>
       <h1>This is Login.</h1>
@@ -11,3 +11,16 @@ export const LoginPage = () => {
     </div>
   )
 }
+
+export default LoginPage;
+
+
+// function Login() {
+//   return (
+//     <div className='container'>
+//       <h1>Login Page</h1>
+//     </div>
+//   )
+// }
+
+// export default Login;
