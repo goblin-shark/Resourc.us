@@ -9,7 +9,19 @@ function TeamDetailPage ({ match }) {
   console.log( 'id:', id)
 
   // set Team info in state
-  // const [team, setTeam] = useState(null);
+  const [team, setTeam] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/teams/list")
+    .then(response => response.json())
+    .then(data => {
+      const team = data.filter(t => t._id === id)
+      console.log('teams data:', data)
+      console.log('individual team data:', team)
+    }).catch(err => {
+      console.log('GET FAILED', err);
+    })
+  }, [])
 
   // fetch teams list and filter by team name (from URL params)
   // useEffect(() => {
