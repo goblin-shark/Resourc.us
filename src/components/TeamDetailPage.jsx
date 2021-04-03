@@ -9,7 +9,7 @@ function TeamDetailPage ({ match }) {
   console.log( 'id:', id)
 
   // set Team info in state
-  const [team, setTeam] = useState(null);
+  const [team, setTeam] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/teams/list")
@@ -18,7 +18,9 @@ function TeamDetailPage ({ match }) {
       const team = data.filter(t => t._id === id)
       console.log('teams data:', data)
       console.log('individual team data:', team)
-    }).catch(err => {
+      setTeam(team)
+    })
+    .catch(err => {
       console.log('GET FAILED', err);
     })
   }, [])
@@ -38,6 +40,11 @@ function TeamDetailPage ({ match }) {
   return (
     <div>
       <p>Individual Team Page</p>
+      <div>{team.map(t => <div key={t._id}>
+        <p>Name: {t.name}</p>
+        <p>Category: {t.category}</p>
+        <p>Description: {t.description}</p>
+      </div>)}</div>
     </div>
   );
 }
