@@ -11,7 +11,7 @@
     grid-template-columns: auto;
 }
 
-.container {
+.cardContainer {
 	position: relative;
 	display: grid;
     width: auto;
@@ -25,6 +25,10 @@
 		position: relative; 
 		height: 5rem;
 	}
+}
+
+.formContainer {
+    max-width: 375px;
 }
 
 @media screen and (max-width: 1300px) {

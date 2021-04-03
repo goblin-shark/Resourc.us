@@ -17,12 +17,10 @@ function Navbars() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <h1>Resourc.us</h1>
+          <Link to="/"><h1>Resourc.us</h1></Link>
           <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/teams'>Teams</Link></li>
-            <li><Link to='/CreateResource'>Create Resource</Link></li>
-            <li><Link to='/CreateTeam'>Create Team</Link></li>
+            <li><Link to='/teams'>View all Teams</Link></li>
+            {/* <li><Link to='/CreateResource'>Create Resource</Link></li> */}
           </ul>
         </Nav>
         {/* <Form inline>

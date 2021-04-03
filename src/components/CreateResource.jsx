@@ -2,7 +2,7 @@ import React from "react"
 
 function createResource() {
   return (
-    <div className='container'>
+    <div className='container formContainer'>
       <h1>Create Resource Page</h1>
       <form>
         <div className='form-group'>

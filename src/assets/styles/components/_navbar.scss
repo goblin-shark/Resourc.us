@@ -12,12 +12,15 @@ nav {
         }
     }
     &.navbar {
+        position: relative;
         display: block;
         &.navbar-expand-lg {
             .navbar-collapse {
                 flex-direction: column;
             }
             .navbar-nav {
+                left: 1.5rem;
+                position: fixed;
                 flex-direction: column;
             }
         }

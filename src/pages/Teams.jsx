@@ -35,7 +35,7 @@ function Teams() {
   }
   
   return (
-    <div className="container">
+    <div className="cardContainer">
       {_teams.map( team => 
         <div className="teamCard" key={team.name}>
           <header>
