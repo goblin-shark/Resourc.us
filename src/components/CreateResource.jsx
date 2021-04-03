@@ -106,7 +106,6 @@ function createResource() {
             placeholder="Category"
           ></input>
         </div>
-        <button className="btn btn-lg btn-info">Add to Team</button>
 
         <select onChange={selectTeam}>
           {_teams.map((team) => (
