@@ -47,8 +47,8 @@ function Teams() {
           <section>
             <div className="meta">
               <div>{team.category}</div>
-              <div><i class='bx bx-merge'></i> 342</div>
-              <div><i class='bx bxs-user-account'></i> 24</div>
+              <div><i className='bx bx-merge'></i> 342</div>
+              <div><i className='bx bxs-user-account'></i> 24</div>
             </div>
             <article>
               <p>{team.description}</p>
@@ -56,7 +56,8 @@ function Teams() {
             <div className="actions">
               <div>
                 <Link className="btn btn-default" to="/#">Join</Link>
-                <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")}>View</Link>
+                {/* <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")} team={team}>View</Link> */}
+                <Link className="btn btn-primary" to={"/teams/" + team._id}>View</Link>
               </div>
             </div>
           </section>

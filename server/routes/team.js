@@ -10,6 +10,14 @@ router.get('/list',
     }
 );
 
+router.get('/list/:id',
+    teamController.findTeam,
+    (req, res) => {
+        console.log('find teams router is working');
+        res.status(200).json(res.locals.response);
+    }
+);
+
 router.get('/listThree',
     teamController.listThreeTeams,
     (req, res) => {

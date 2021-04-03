@@ -44,13 +44,13 @@ function App() {
         </ul>
         </header>
         <Route path="/" exact>{<Home></Home>}</Route>
-        <Route path="/teams">{<Teams></Teams>}</Route>
+        <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
+        <Route path="/teams" exact component={Teams}></Route>
         <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
         <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
         <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
-        <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
       </div>
     </div>
   );

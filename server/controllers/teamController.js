@@ -44,6 +44,25 @@ teamController.listTeams = (req, res, next) => {
         });
 }
 
+teamController.findTeam = (req, res, next) => {
+    Team.findOne({ "_id": req.params.id})
+        .then(data => {
+            res.locals.response = data;
+            console.log('teamController.listTeams:', 'team found')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List Teams - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in teamController.findTeam',
+                    message: err
+                }
+            })
+        });
+}
+
+
 teamController.listThreeTeams = (req, res, next) => {
     Team.find({}, null, { limit: 3 })
         .then(data => {
