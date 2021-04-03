@@ -62,7 +62,7 @@ function createResource() {
     console.log(_payload);
   }
   return (
-    <div className="container">
+    <div className='container formContainer'>
       <h1>Create Resource Page</h1>
 
       <form>

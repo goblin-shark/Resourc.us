@@ -1,9 +1,7 @@
-import React from "react";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useLayoutEffect } from "react";
 
 // import router
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, Link, useLocation } from "react-router-dom";
 
 // import pages
 import Home from "./pages/Home";
@@ -20,12 +18,31 @@ import ResourceCard from "./components/ResourceCard"
 
 
 function App() {
-  return (
-    <div className="App">
-      <Router>
-        <h1>Resource Sharing App (placeholder title)</h1>
+  const location = useLocation().pathname;
+  const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
+  
 
-        <Navbars />
+  useLayoutEffect(() => {
+		if (location === '/teams') {
+      setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
+    } else if (location === '/CreateTeam' || location === '/CreateResource' || location === '/login' || location === '/signup') {
+      setButton('');
+    } else {
+      setButton(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
+    }
+  }, [location]);
+
+  return (
+    <div className="outerContainer">
+      <Navbars />
+      <div className="innerContainer">
+        <header className="mainHeader">
+        <ul>
+          <li className="primary-action">{button}</li>
+          <li><Link to='/login'>Login</Link></li>
+          <li><Link to='/signup'>Signup</Link></li>
+        </ul>
+        </header>
         <Route path="/" exact>{<Home></Home>}</Route>
         <Route path="/teams">{<Teams></Teams>}</Route>
         <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
@@ -34,7 +51,7 @@ function App() {
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
         <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
         <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
-      </Router>
+      </div>
     </div>
   );
 }
