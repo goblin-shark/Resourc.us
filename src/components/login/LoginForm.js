@@ -42,20 +42,18 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" ref={register} onChange={handleChange} />
-      </div>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleChange} />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" ref={register} onChange={handleChange} />
-      </div>
+        <div className="form-group">
+          <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
+        </div>
 
-      <div className="form-group">
-        <button type="submit">Log In</button>
-      </div>
-    </form>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary">Log In</button>
+        </div>
+      </form>
   )
 }
