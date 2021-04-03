@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import ResourceCard from "./ResourceCard"
 // import { Link } from 'react-router-dom';
 
-function TeamDetailPage ({ match }) {
+function TeamDetailPage({ match }) {
   // get the team ID from the URL params (destructure props.match.params)
   const { params: { id } } = match;
 
@@ -15,26 +16,26 @@ function TeamDetailPage ({ match }) {
     // TO DO LATER: change to use teamController.findTeam
     // GET team details by ID
     fetch("http://localhost:3000/teams/list")
-    .then(response => response.json())
-    .then(data => {
-      const team = data.filter(t => t._id === id)
-      // console.log('teams data:', data)
-      // console.log('individual team data:', team)
-      setTeam(team)
-    })
-    .then(() => {
-      // GET resources that belong to current team by team ID
-      fetch("http://localhost:3000/resource/listAll")
       .then(response => response.json())
       .then(data => {
-        const currentResources = data.filter(r => r.teamId === id)
-        // console.log("resources: ", data)
-        setTeamResources(currentResources)
+        const team = data.filter(t => t._id === id)
+        // console.log('teams data:', data)
+        // console.log('individual team data:', team)
+        setTeam(team)
       })
-    })
-    .catch(err => {
-      console.log('GET FAILED', err);
-    })
+      .then(() => {
+        // GET resources that belong to current team by team ID
+        fetch("http://localhost:3000/resource/listAll")
+          .then(response => response.json())
+          .then(data => {
+            const currentResources = data.filter(r => r.teamId === id)
+            // console.log("resources: ", data)
+            setTeamResources(currentResources)
+          })
+      })
+      .catch(err => {
+        console.log('GET FAILED', err);
+      })
   }, [])
 
   return (
@@ -44,16 +45,8 @@ function TeamDetailPage ({ match }) {
         <p>Name: {t.name}</p>
         <p>Category: {t.category}</p>
         <p>Description: {t.description}</p>
+        <ResourceCard teamId={t._id}></ResourceCard>
       </div>)}</div>
-
-      <div>
-        <h1>Resources</h1>
-        <div>{teamResources.map(resource => <div key={resource._id}>
-          <div>{resource.title}</div>
-          <div>{resource.link}</div>
-          <div>{resource.votes}</div>
-        </div>)}</div>
-      </div>
     </div>
   );
 }
