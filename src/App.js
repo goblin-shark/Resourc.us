@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup"
 import Teams from "./pages/Teams";
+import TeamDetailPage from "./components/TeamDetailPage"
 
 // import components
 import Navbars from "./components/Navbar";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
+        <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
       </Router>
     </div>
   );

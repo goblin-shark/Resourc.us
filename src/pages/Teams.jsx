@@ -27,8 +27,7 @@ function Teams() {
           <h1>{team.category}</h1>
 
           {/* link to Team Detail Page */}
-          <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(" ", "-")}>View</Link>
-          <Route path={"/teams/" + team.name.toLowerCase().trim().replace(" ", "-")} exact>{team.name}</Route>
+          <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")}>View</Link>
           
           {/* link to join Team */}
           <Link className="btn btn-success" to="/#">Join</Link>
