@@ -23,6 +23,7 @@ function Navbars() {
           <h4><Link to='/CreateTeam'>Create Team</Link></h4>
           <h4><Link to='/login'>Login</Link></h4>
           <h4><Link to='/signup'>Signup</Link></h4>
+          <h4><Link to='/ResourceCard'>ResourceCard</Link></h4>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
