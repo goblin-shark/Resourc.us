@@ -39,12 +39,19 @@ function TeamDetailPage({ match }) {
   }, [])
 
   return (
-    <div>
-      <p>Individual Team Page</p>
-      <div>{team.map(t => <div key={t._id}>
-        <p>Name: {t.name}</p>
-        <p>Category: {t.category}</p>
-        <p>Description: {t.description}</p>
+    <div class="container teamContainer">
+      <div className="teamCard teamHero">{team.map(t => <div key={t._id}>
+        <header>
+          <div className="mask"></div>
+          <h1>{t.name}</h1>
+        </header>
+        <section>
+        <div className="meta">
+          <div>{t.category}</div>
+        </div>
+        <article><p>{t.description}</p></article>  
+        </section>
+        
         <ResourceCard teamId={t._id}></ResourceCard>
       </div>)}</div>
     </div>

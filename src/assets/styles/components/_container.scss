@@ -31,6 +31,10 @@
     max-width: 375px;
 }
 
+.teamContainer {
+    max-width: 880px;
+}
+
 @media screen and (max-width: 1300px) {
     .cardContainer {
         grid-template-columns: repeat(3, minmax(0, 1fr));
