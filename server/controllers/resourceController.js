@@ -47,6 +47,28 @@ resourceController.listResources = (req, res, next) => {
         });
 }
 
+resourceController.listThreeResources = (req, res, next) => {
+    const requestBody = req.body;
+
+    Resource.find({
+        teamId: requestBody.teamId,
+    }, null, { limit: 3 })
+        .then(data => {
+            res.locals.response = data;
+            console.log('resourceController.listThreeResources:', '3 resources listed')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List 3 Resources - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in resourceController.listThreeResources',
+                    message: err
+                }
+            })
+        });
+}
+
 resourceController.listAllResources = (req, res, next) => {
     Resource.find({})
         .then(data => {

@@ -10,6 +10,14 @@ router.get('/list',
     }
 );
 
+router.get('/listThree',
+    teamController.listThreeTeams,
+    (req, res) => {
+        console.log('list 3 teams router is working');
+        res.status(200).json(res.locals.response);
+    }
+);
+
 router.post('/create',
     teamController.createTeam,
     (req, res) => {

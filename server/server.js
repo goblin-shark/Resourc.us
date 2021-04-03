@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const path = require('path');
 const db = require('./models/db');
@@ -8,6 +9,8 @@ const teamRouter = require('./routes/team');
 const resourceRouter = require('./routes/resource');
 
 const PORT = 3000;
+
+app.use(cors())
 
 // HANDLE ASSETS
 app.use(express.json());

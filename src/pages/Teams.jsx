@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route } from 'react-router-dom';
+
 
 function Teams() {
   const [_teams, setTeams] = useState([]);
 
   useEffect(() => {
+
     fetch("http://localhost:3000/teams/list").then(response => {
       return response.json(); //Parses to JSON
     }).then(data => {
@@ -30,16 +32,16 @@ function Teams() {
     ['#005C97', '#363795']
   ]
   function colorPicker() {
-    return Math.floor( Math.random() * colors.length );
+    return Math.floor(Math.random() * colors.length);
   }
-  
+
   return (
     <div className="cardContainer">
-      {_teams.map( team => 
+      {_teams.map(team =>
         <div className="teamCard" key={team.name}>
           <header>
             <img src="https://images.unsplash.com/photo-1612392166886-ee8475b03af2?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2102&q=80" />
-            <div className="mask" style={{ background: `linear-gradient(${colors[colorPicker()][0]}, ${colors[colorPicker()][1]})`}}></div>
+            <div className="mask" style={{ background: `linear-gradient(${colors[colorPicker()][0]}, ${colors[colorPicker()][1]})` }}></div>
             <h1>{team.name}</h1>
           </header>
           <section>
@@ -53,13 +55,13 @@ function Teams() {
             </article>
             <div className="actions">
               <div>
-              <Link className="btn btn-default" to="/#">Join</Link>
-              <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")}>View</Link>
+                <Link className="btn btn-default" to="/#">Join</Link>
+                <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")}>View</Link>
               </div>
             </div>
           </section>
         </div>
-      ))}
+      )}
     </div>
   );
 }
