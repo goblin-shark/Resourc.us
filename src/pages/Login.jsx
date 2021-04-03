@@ -4,7 +4,7 @@ import { LoginForm } from '../components/login/LoginForm';
 
 function LoginPage () {
   return (
-    <div>
+    <div className="container formContainer">
       <h1>This is Login.</h1>
       <LoginForm></LoginForm>
       <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
@@ -13,14 +13,3 @@ function LoginPage () {
 }
 
 export default LoginPage;
-
-
-// function Login() {
-//   return (
-//     <div className='container'>
-//       <h1>Login Page</h1>
-//     </div>
-//   )
-// }
-
-// export default Login;

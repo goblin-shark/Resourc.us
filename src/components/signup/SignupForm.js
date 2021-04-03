@@ -40,30 +40,26 @@ export const SignupForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="firstname">First Name</label>
-        <input type="text" name="firstname" id="firstname" ref={register} onChange={handleChange} />
-      </div>
-      
-      <div className="form-group">
-        <label htmlFor="lastname">Last Name</label>
-        <input type="text" name="lastname" id="lastname" ref={register} onChange={handleChange} />
-      </div>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <input type="text" className="form-control" placeholder="firstname" id="firstname" ref={register} onChange={handleChange} />
+        </div>
+        
+        <div className="form-group">
+          <input type="text" className="form-control" placeholder="lastname" id="lastname" ref={register} onChange={handleChange} />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" ref={register} onChange={handleChange} />
-      </div>
+        <div className="form-group">
+          <input type="email" className="form-control" placeholder="email" id="email" ref={register} onChange={handleChange} />
+        </div>
 
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" ref={register} onChange={handleChange} />
-      </div>
+        <div className="form-group">
+          <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
+        </div>
 
-      <div className="form-group">
-        <button type="submit">Sign Up</button>
-      </div>
-    </form>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary">Sign Up</button>
+        </div>
+      </form>
   )
 }
