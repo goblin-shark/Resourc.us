@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
-import { Link, Route } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, Route } from "react-router-dom";
 
 function Teams() {
   const [_teams, setTeams] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/teams/list").then(response => {
-      
       return response.json(); //Parses to JSON
     }).then(data => {
       setTeams(data);
@@ -60,9 +59,9 @@ function Teams() {
             </div>
           </section>
         </div>
-      )}
+      ))}
     </div>
-  )
+  );
 }
 
 export default Teams;
