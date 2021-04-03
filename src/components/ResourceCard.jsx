@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 // Route this page
 // Render resource
@@ -43,6 +44,7 @@ function ResourceCard({ teamId }) {
     console.log('COUNT', count)
     event.preventDefault();
     const id = event.target.id;
+    console.log(id);
     // const parent = document.getElementById(id);
     // const teamid = parent.getAttribute("value");
     // const link = parent.getAttribute("link");
@@ -88,6 +90,7 @@ function ResourceCard({ teamId }) {
     console.log('COUNT', count)
     event.preventDefault();
     const id = event.target.id;
+
     // const parent = document.getElementById(id);
     // const teamid = parent.getAttribute("value");
     // const link = parent.getAttribute("link");
@@ -169,7 +172,7 @@ function ResourceCard({ teamId }) {
   //     });
   // }
   return (
-    <div>
+    <div className="container">
       {/* <h1>Resource Card</h1>
       <div>
         <h1>{_resource.link}</h1>
@@ -179,18 +182,19 @@ function ResourceCard({ teamId }) {
       </div> */}
       {_resource.map((resource) => (
         <div
-
           className="resourceCard"
-          // value={resource.teamId}
           key={resource._id}
-        // link={resource.link}
-        // votes={resource.votes}
         >
-          <h1>{teamId}</h1>
-          <h1>{resource.link}</h1>
-          <h1>{resource.votes}</h1>
-          <button onClick={handleUpvote} votes={resource.votes} id={resource._id} >Upvote</button>
-          <button onClick={handleDownvote} votes={resource.votes} id={resource._id} >Downvote</button>
+          <div className="votes">
+            <div className="voteCount">{resource.votes}</div>
+            <div className="actions">
+              <button><i onClick={handleUpvote}  votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
+              <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+            </div>
+          </div>
+          <div className="link">
+            <Link to={resource.link}>{resource.link}</Link>
+          </div>
         </div>
       ))}
     </div>
