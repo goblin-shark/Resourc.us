@@ -4,9 +4,6 @@ import React, {useState, useEffect} from "react";
 function TeamDetailPage ({ match }) {
   // get the team ID from the URL params (destructure props.match.params)
   const { params: { id } } = match;
-  // console.log( 'props:', props)
-  // console.log( 'params:', params)
-  // console.log( 'id:', id)
 
   // set Team info in state
   const [team, setTeam] = useState([]);
@@ -15,6 +12,8 @@ function TeamDetailPage ({ match }) {
   const [teamResources, setTeamResources] = useState([]);
 
   useEffect(() => {
+    // TO DO LATER: change to use teamController.findTeam
+    // GET team details by ID
     fetch("http://localhost:3000/teams/list")
     .then(response => response.json())
     .then(data => {
@@ -24,11 +23,12 @@ function TeamDetailPage ({ match }) {
       setTeam(team)
     })
     .then(() => {
+      // GET resources that belong to current team by team ID
       fetch("http://localhost:3000/resource/listAll")
       .then(response => response.json())
       .then(data => {
         const currentResources = data.filter(r => r.teamId === id)
-        console.log("resources: ", data)
+        // console.log("resources: ", data)
         setTeamResources(currentResources)
       })
     })
