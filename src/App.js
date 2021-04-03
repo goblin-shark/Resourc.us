@@ -50,7 +50,7 @@ function App() {
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
         <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
-        <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
+        <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
       </div>
     </div>
   );
