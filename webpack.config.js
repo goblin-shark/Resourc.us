@@ -50,8 +50,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      appMountId: "app",
-      filename: "./src/index.html",
+          template: path.resolve(__dirname, "./src/index.html"),
     }),
   ],
   devServer: {
