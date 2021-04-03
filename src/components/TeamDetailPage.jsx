@@ -18,7 +18,7 @@ function TeamDetailPage ({ match, location }) {
     }).catch(err => {
       console.log('Failed to get team', err);
     })
-  })
+  }, [])
 
   return (
     <>

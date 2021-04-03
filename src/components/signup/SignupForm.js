@@ -24,6 +24,7 @@ export const SignupForm = () => {
     })
       .then(resp => console.log(resp))
       .then(data => {
+        // Enter something that stores or handles cookies or JWT
         history.push("/");
       })
       .catch(err => console.log('Auth Form won\'t fetch, error:', err));
