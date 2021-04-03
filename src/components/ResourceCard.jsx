@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 // Render resource
 // Put request to upvote and downvote
 
-function ResourceCard() {
+function ResourceCard({ teamId }) {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
   // const [_upvote, setUpvote] = useState({});
-  const _payload={"teamId": "606275b0cb1a340bdc7d8121"}
-  
+  const _payload = { "teamId": teamId }
+
   useEffect(() => {
     console.log(_payload)
     fetch("http://localhost:3000/resource/list", {
@@ -27,29 +27,32 @@ function ResourceCard() {
       .then((data) => {
         // console.log(data);
         setResource(data)
-        console.log('_resource:',_resource)
+        console.log('_resource:', _resource)
       })
       .catch((err) => {
         console.log("Post Fail", err);
       });
+
+    console.log("TEAM ID in resource card: ", teamId)
   }, [count]);
 
-//get resource id
-//get current resource vote
-//update state
+  //get resource id
+  //get current resource vote
+  //update state
   function handleUpvote(event) {
-   
+
     console.log('COUNT', count)
     event.preventDefault();
-    const id=event.target.id;
+    const id = event.target.id;
+    console.log(id);
     // const parent = document.getElementById(id);
     // const teamid = parent.getAttribute("value");
     // const link = parent.getAttribute("link");
     // const votes = Number(parent.getAttribute("votes"));
-    const votes=Number(event.target.getAttribute('votes'));
+    const votes = Number(event.target.getAttribute('votes'));
     // console.log('HERE',teamid);
     const payload = {
-      "_id" : id,
+      "_id": id,
       "votes": votes,
       "upvote": true
     }
@@ -67,7 +70,7 @@ function ResourceCard() {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:' ,data);
+        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -83,18 +86,19 @@ function ResourceCard() {
   }
 
   function handleDownvote(event) {
-   
+
     console.log('COUNT', count)
     event.preventDefault();
-    const id=event.target.id;
+    const id = event.target.id;
+
     // const parent = document.getElementById(id);
     // const teamid = parent.getAttribute("value");
     // const link = parent.getAttribute("link");
     // const votes = Number(parent.getAttribute("votes"));
-    const votes=Number(event.target.getAttribute('votes'));
+    const votes = Number(event.target.getAttribute('votes'));
     // console.log('HERE',teamid);
     const payload = {
-      "_id" : id,
+      "_id": id,
       "votes": votes,
       "upvote": false
     }
@@ -112,7 +116,7 @@ function ResourceCard() {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:' ,data);
+        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -127,7 +131,7 @@ function ResourceCard() {
       });
   }
   // function handleDownvote(event) {
-   
+
   //   event.preventDefault();
   //   const parent = document.getElementById("ethan");
   //   const teamid = parent.getAttribute("value");
@@ -178,18 +182,14 @@ function ResourceCard() {
       </div> */}
       {_resource.map((resource) => (
         <div
-        
           className="resourceCard"
-          // value={resource.teamId}
           key={resource._id}
-          // link={resource.link}
-          // votes={resource.votes}
         >
           <div className="votes">
             <div className="voteCount">{resource.votes}</div>
             <div className="actions">
-              <button onClick={handleUpvote}  votes={resource.votes} id={resource._id} ><i class='bx bxs-upvote'></i></button>
-              <button onClick={handleDownvote} votes={resource.votes} id={resource._id} ><i class='bx bxs-downvote' ></i></button>
+              <button><i onClick={handleUpvote}  votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
+              <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
             </div>
           </div>
           <div className="link">
