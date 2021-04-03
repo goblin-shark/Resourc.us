@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SignupForm } from '../components/signup/signupForm';
+// import { SignupForm } from '../components/signup/SignupForm';
 
-
-export const SignupPage = () => {
+function SignupPage () {
   return (
     <div>
       <h1>This is Signup.</h1>
-      <SignupForm></SignupForm>
+      {/* <SignupForm></SignupForm> */}
       <p>Have an account? <Link to="/login">Log In</Link></p>
     </div>
   )
 }
+
+export default SignupPage;

@@ -1,16 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import App from "./App";
 import "./styles.css";
 import "./styles.scss";
-import App from "./App";
-import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('app')
-);
+var mountNode = document.getElementById("app");
+ReactDOM.render(<App name="Jane" />, mountNode);

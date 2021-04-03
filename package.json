@@ -11,7 +11,8 @@
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
     "start": "webpack serve --hot --mode development",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "restart": "npm run build-dev && npm run server"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -22,6 +23,7 @@
     "nodemon": "^2.0.7",
     "popper.js": "^1.16.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^6.15.5",
     "react-hot-loader": "^4.13.0",
@@ -45,5 +47,9 @@
     "url-loader": "^4.1.1",
     "@babel/preset-react": "^7.12.13",
     "webpack-dev-server": "^3.11.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

@@ -1,6 +1,15 @@
-$primary-color: white;
-$bg: black;
-h1 {
-  color: $primary-color;
-  background-color: $bg;
+// $primary-color: white;
+// $bg: black;
+// h1 {
+//   color: $primary-color;
+//   background-color: $bg;
+// }
+
+.App {
+  text-align: center;
+}
+
+.teamCard {
+  border: 2px solid black;
+  margin-bottom: 20px;
 }
