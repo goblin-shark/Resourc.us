@@ -32,19 +32,19 @@
 }
 
 @media screen and (max-width: 1300px) {
-    .container {
+    .cardContainer {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media screen and (max-width: 980px) {
-    .container {
+    .cardContainer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media screen and (max-width: 575px) {
-    .container {
+    .cardContainer {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 }
