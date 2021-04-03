@@ -54,7 +54,8 @@ function Teams() {
             <div className="actions">
               <div>
               <Link className="btn btn-default" to="/#">Join</Link>
-              <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")}>View</Link>
+              {/* <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")} team={team}>View</Link> */}
+              <Link className="btn btn-primary" to={"/teams/" + team._id}>View</Link>
               </div>
             </div>
           </section>

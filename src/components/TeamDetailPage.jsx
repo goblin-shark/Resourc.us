@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
 // import { Link } from 'react-router-dom';
 
-function TeamDetailPage () {
+function TeamDetailPage (props) {
   // get the team name from the URL params
-  // const { params: { teamName } } = match;
+  // const { params } = match;
+  // console.log( 'params:', params)
+  console.log( 'props:', props)
 
   // set Team info in state
   // const [team, setTeam] = useState(null);
@@ -21,9 +23,9 @@ function TeamDetailPage () {
   // }, [])
 
   return (
-    <>
+    <div>
       <p>Individual Team Page</p>
-    </>
+    </div>
   );
 }
 
