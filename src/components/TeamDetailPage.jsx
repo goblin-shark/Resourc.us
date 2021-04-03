@@ -13,7 +13,7 @@ function TeamDetailPage ({ match, location }) {
     fetch("http://localhost:3000/teams/list")
     .then(response => response.json())
     .then(teams => {
-      const team = teams.filter(team.name.toLowerCase() === teamName.replace(/[-]/g, ' '))
+      const team = teams.filter((t) => t.name.toLowerCase() === teamName.replace(/[-]/g, ' '))
       setTeam(team)
     }).catch(err => {
       console.log('Failed to get team', err);
