@@ -4,19 +4,20 @@ import { useHistory } from 'react-router-dom';
 
 export const LoginForm = () => {
   const [values, setValues] = useState({
-		email: '',
-		password: '',
-	});
+    email: '',
+    password: '',
+  });
   const { register, handleSubmit } = useForm()
   const history = useHistory()
 
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
   const onSubmit = handleSubmit((data) => {
-    fetch('/user/login/', {
+    fetch('http://localhost:3000/user/login', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(values)
     })

@@ -20,6 +20,15 @@ router.post('/list',
     }
 );
 
+router.post('/listThree',
+    resourceController.listThreeResources,
+    (req, res) => {
+        console.log('list 3 resources router is working');
+        console.log(res.locals.response);
+        res.status(200).json(res.locals.response);
+    }
+);
+
 router.get('/listAll',
     resourceController.listAllResources,
     (req, res) => {
