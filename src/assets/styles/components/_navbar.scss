@@ -1,0 +1,30 @@
+nav {
+    &.bg-dark {
+        background-color: #293042!important;
+        color: #fff;
+        a {
+            color: #adb5bd;
+            &:hover {
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+    }
+    &.navbar {
+        display: block;
+        &.navbar-expand-lg {
+            .navbar-collapse {
+                flex-direction: column;
+            }
+            .navbar-nav {
+                flex-direction: column;
+            }
+        }
+        ul {
+            padding-left: 1rem;
+            li {
+                margin-bottom: 1rem;
+            }
+        }
+    } 
+}

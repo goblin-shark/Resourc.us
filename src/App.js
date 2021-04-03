@@ -20,16 +20,16 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <h1>Resource Sharing App (placeholder title)</h1>
-
-        <Navbars />
-        <Route path="/" exact>{<Home></Home>}</Route>
-        <Route path="/teams">{<Teams></Teams>}</Route>
-        <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
-        <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
-        <Route path="/signup">{<SignupPage></SignupPage>}</Route>
-        <Route path="/login">{<LoginPage></LoginPage>}</Route>
-        <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
+        <div className="outerContainer">
+          <Navbars />
+          <Route path="/" exact>{<Home></Home>}</Route>
+          <Route path="/teams">{<Teams></Teams>}</Route>
+          <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
+          <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
+          <Route path="/signup">{<SignupPage></SignupPage>}</Route>
+          <Route path="/login">{<LoginPage></LoginPage>}</Route>
+          <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
+        </div>
       </Router>
     </div>
   );
