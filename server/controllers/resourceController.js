@@ -70,8 +70,9 @@ resourceController.upvoteResource = (req, res, next) => {
     const numVotes = requestBody.upvote ? 1 : -1;
 
     Resource.findOneAndUpdate({
-        link: requestBody.link,
-        teamId: requestBody.teamId,
+        // link: requestBody.link,
+        // teamId: requestBody._id,
+        _id: requestBody._id,
     }, {
         votes: requestBody.votes + numVotes,
     },

@@ -6,9 +6,10 @@ import React, { useState, useEffect } from "react";
 
 function ResourceCard() {
   const [_resource, setResource] = useState([]);
-  const [_count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   // const [_upvote, setUpvote] = useState({});
   const _payload={"teamId": "606275b0cb1a340bdc7d8121"}
+  
   useEffect(() => {
     console.log(_payload)
     fetch("http://localhost:3000/resource/list", {
@@ -30,22 +31,24 @@ function ResourceCard() {
       .catch((err) => {
         console.log("Post Fail", err);
       });
-  }, [_count]);
+  }, [count]);
 
 //get resource id
 //get current resource vote
 //update state
   function handleUpvote(event) {
-    setCount(2);
+   
+    console.log('COUNT', count)
     event.preventDefault();
-    const parent = document.getElementById("ethan");
-    const teamid = parent.getAttribute("value");
-    const link = parent.getAttribute("link");
-    const votes = Number(parent.getAttribute("votes"));
-    console.log('HERE',teamid);
+    const id=event.target.id;
+    // const parent = document.getElementById(id);
+    // const teamid = parent.getAttribute("value");
+    // const link = parent.getAttribute("link");
+    // const votes = Number(parent.getAttribute("votes"));
+    const votes=Number(event.target.getAttribute('votes'));
+    // console.log('HERE',teamid);
     const payload = {
-      "link" : link,
-      "teamId": teamid,
+      "_id" : id,
       "votes": votes,
       "upvote": true
     }
@@ -70,23 +73,27 @@ function ResourceCard() {
             newResource[i] = data;
           }
         }
+        setCount(count + 1);
         setResource(newResource)
       })
       .catch((err) => {
         console.log("Post Fail", err);
       });
   }
+
   function handleDownvote(event) {
-    setCount(1);
+   
+    console.log('COUNT', count)
     event.preventDefault();
-    const parent = document.getElementById("ethan");
-    const teamid = parent.getAttribute("value");
-    const link = parent.getAttribute("link");
-    const votes = Number(parent.getAttribute("votes"));
-    console.log('HERE',teamid);
+    const id=event.target.id;
+    // const parent = document.getElementById(id);
+    // const teamid = parent.getAttribute("value");
+    // const link = parent.getAttribute("link");
+    // const votes = Number(parent.getAttribute("votes"));
+    const votes=Number(event.target.getAttribute('votes'));
+    // console.log('HERE',teamid);
     const payload = {
-      "link" : link,
-      "teamId": teamid,
+      "_id" : id,
       "votes": votes,
       "upvote": false
     }
@@ -111,12 +118,54 @@ function ResourceCard() {
             newResource[i] = data;
           }
         }
+        setCount(count + 1);
         setResource(newResource)
       })
       .catch((err) => {
         console.log("Post Fail", err);
       });
   }
+  // function handleDownvote(event) {
+   
+  //   event.preventDefault();
+  //   const parent = document.getElementById("ethan");
+  //   const teamid = parent.getAttribute("value");
+  //   const link = parent.getAttribute("link");
+  //   const votes = Number(parent.getAttribute("votes"));
+  //   console.log('HERE',teamid);
+  //   const payload = {
+  //     "link" : link,
+  //     "teamId": teamid,
+  //     "votes": votes,
+  //     "upvote": false
+  //   }
+  //   console.log('payload:', payload)
+  //   // POST the payload to database
+  //   fetch("http://localhost:3000/resource/upvote", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json, text/plain, */*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(payload),
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log('data sent back:' ,data);
+  //       const newResource = _resource;
+  //       for (let i = 0; i < newResource.length; i++) {
+  //         if (newResource[i].link === data.link) {
+  //           newResource[i] = data;
+  //         }
+  //       }
+  //       setResource(newResource)
+  //     })
+  //     .catch((err) => {
+  //       console.log("Post Fail", err);
+  //     });
+  // }
   return (
     <div>
       {/* <h1>Resource Card</h1>
@@ -128,17 +177,17 @@ function ResourceCard() {
       </div> */}
       {_resource.map((resource) => (
   <div
-    id="ethan"
+  
     className="teamCard"
-    value={resource.teamId}
+    // value={resource.teamId}
     key={resource._id}
-    link={resource.link}
-    votes={resource.votes}
+    // link={resource.link}
+    // votes={resource.votes}
   >
     <h1>{resource.link}</h1>
     <h1>{resource.votes}</h1>
-    <button onClick={handleUpvote}>Upvote</button>
-    <button onClick={handleDownvote}>Downvote</button>
+    <button onClick={handleUpvote}  votes={resource.votes} id={resource._id} >Upvote</button>
+    <button onClick={handleDownvote} votes={resource.votes} id={resource._id} >Downvote</button>
   </div>
 ))}
     </div>
