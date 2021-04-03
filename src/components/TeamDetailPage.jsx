@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 // import { Link } from 'react-router-dom';
 
-function TeamDetailPage (props) {
-  // get the team name from the URL params
-  // const { params } = match;
+function TeamDetailPage ({ match }) {
+  // get the team ID from the URL params (destructure props.match.params)
+  const { params: { id } } = match;
   // console.log( 'params:', params)
-  console.log( 'props:', props)
+  // console.log( 'props:', props)
+  console.log( 'id:', id)
 
   // set Team info in state
   // const [team, setTeam] = useState(null);
