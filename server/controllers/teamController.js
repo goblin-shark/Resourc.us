@@ -62,4 +62,23 @@ teamController.findTeam = (req, res, next) => {
         });
 }
 
+
+teamController.listThreeTeams = (req, res, next) => {
+    Team.find({}, null, { limit: 3 })
+        .then(data => {
+            res.locals.response = data;
+            console.log('teamController.listThreeTeams:', '3 list found: ', res.locals.response)
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List 3 Teams - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in teamController.listThreeTeams',
+                    message: err
+                }
+            })
+        });
+}
+
 module.exports = teamController;
