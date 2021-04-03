@@ -7,7 +7,9 @@ userController.createUser = (req, res, next) => {
 	console.log('userController.createUser:', 'reached controller');
 	User.create({
 		email: requestBody.email,
-		hash: requestBody.hash,
+		hash: requestBody.password,
+		firstname: requestBody.firstname,
+		lastname: requestBody.lastname,
 	})
 		.then(data => {
 			res.locals.response = data;
@@ -28,17 +30,18 @@ userController.createUser = (req, res, next) => {
 userController.validateUser = (req, res, next) => {
 	const requestBody = req.body;
 	console.log('userController.validateUser:', 'reached controller');
-	User.findOne({ username: requestBody.username }).exec()
+	User.findOne({ email: requestBody.email }).exec()
 		.then(data => {
-			bcrypt.compare(requestBody.hash, data.hash, function(err, result) {
+			bcrypt.compare(requestBody.password, data.hash, function(err, result) {
 				if (result === true) {
 					console.log('userController.validateUser:', 'Password comparison is a match');
 					next();
 				} else {
+					// console.log('userController.validateUser:', 'Password doesnt match');
 					next({
 						log: `validateUser - ERROR: Password doesn't match`,
 						message: { 
-							err: 'Error occured in userController.validateUser',
+							err: 'Error occured in userController.bcrypt',
 							message: 'Password does not match'
 						}
 					}) 
