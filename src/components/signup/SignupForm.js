@@ -5,13 +5,9 @@ import { useHistory } from 'react-router-dom';
 export const SignupForm = () => {
   const [values, setValues] = useState({
 		email: '',
-<<<<<<< HEAD
-		password: ''
-=======
 		password: '',
     firstname: '',
     lastname: ''
->>>>>>> 59fab3e29d378ecb97fd167294680d57d0613b60
 	});
   const { register, handleSubmit } = useForm()
   const history = useHistory()
@@ -28,6 +24,7 @@ export const SignupForm = () => {
     })
       .then(resp => console.log(resp))
       .then(data => {
+        // Enter something that stores or handles cookies or JWT
         history.push("/");
       })
       .catch(err => console.log('Auth Form won\'t fetch, error:', err));
