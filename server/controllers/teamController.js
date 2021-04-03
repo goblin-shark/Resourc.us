@@ -48,7 +48,7 @@ teamController.listThreeTeams = (req, res, next) => {
     Team.find({}, null, { limit: 3 })
         .then(data => {
             res.locals.response = data;
-            console.log('teamController.listThreeTeams:', '3 list found')
+            console.log('teamController.listThreeTeams:', '3 list found: ', res.locals.response)
             next();
         })
         .catch(err => {

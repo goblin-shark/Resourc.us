@@ -40,24 +40,24 @@ export default App;
 
 
 // Other Routes
-{/* <div className="App"> */}
-  // <nav className="navbar">
-  //   <ul className="navbar-nav">
-  //     <li>
-  //       <Link to="/">Home</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/signup">Sign Up</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/login">Log In</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/teams">Teams</Link>
-  //     </li>
-  //   </ul>
-  // </nav>
-  {/* define the routes of the application */}
+{/* <div className="App"> */ }
+// <nav className="navbar">
+//   <ul className="navbar-nav">
+//     <li>
+//       <Link to="/">Home</Link>
+//     </li>
+//     <li>
+//       <Link to="/signup">Sign Up</Link>
+//     </li>
+//     <li>
+//       <Link to="/login">Log In</Link>
+//     </li>
+//     <li>
+//       <Link to="/teams">Teams</Link>
+//     </li>
+//   </ul>
+// </nav>
+{/* define the routes of the application */ }
   // <Switch>
   //   <Route exact path="/" component={HomePage}></Route>
   //   <Route exact path="/signup" component={SignupPage}></Route>
