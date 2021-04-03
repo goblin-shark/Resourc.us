@@ -14,6 +14,7 @@ import TeamDetailPage from "./components/TeamDetailPage"
 import Navbars from "./components/Navbar";
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
+import ResourceCard from "./components/ResourceCard"
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
+        <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
         <Route path={"/teams/:id"}>{<TeamDetailPage></TeamDetailPage>}</Route>
       </div>
     </div>

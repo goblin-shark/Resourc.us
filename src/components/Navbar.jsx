@@ -20,6 +20,7 @@ function Navbars() {
           <Link to="/"><h1>Resourc.us</h1></Link>
           <ul>
             <li><Link to='/teams'>View all Teams</Link></li>
+            <li><Link to='/ResourceCard'>ResourceCard</Link></li>
             {/* <li><Link to='/CreateResource'>Create Resource</Link></li> */}
           </ul>
         </Nav>
