@@ -24,6 +24,46 @@ resourceController.createResource = (req, res, next) => {
         });
 }
 
+resourceController.listResources = (req, res, next) => {
+    const requestBody = req.body;
+
+    Resource.find({
+        teamId: requestBody.teamId,
+    })
+        .then(data => {
+            res.locals.response = data;
+            console.log('resourceController.listResources:', 'resources listed')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List Resources - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in resourceController.listResources',
+                    message: err
+                }
+            })
+        });
+}
+
+resourceController.listAllResources = (req, res, next) => {
+    Resource.find({})
+        .then(data => {
+            res.locals.response = data;
+            console.log('resourceController.listAllResources:', 'all resources listed')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List All Resources - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in resourceController.listAllResources',
+                    message: err
+                }
+            })
+        });
+}
+
 resourceController.upvoteResource = (req, res, next) => {
     const requestBody = req.body;
 
