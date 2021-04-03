@@ -59,7 +59,7 @@ function Teams() {
             </div>
           </section>
         </div>
-      ))}
+      )}
     </div>
   );
 }
