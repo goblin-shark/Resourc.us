@@ -124,10 +124,6 @@ function createResource() {
             <option value={team._id}>{team.name}</option>
           ))}
         </select>
-
-        <button onClick={handleClick} className="btn btn-lg btn-info">
-          Create Resource
-        </button>
       </form>
       <div>
         {/* Pressing enter here actually tries to create the resource form... hmm...*/}
@@ -137,6 +133,9 @@ function createResource() {
           placeHolder="Press enter to add tags"
         />
       </div>
+      <button onClick={handleClick} className="btn btn-lg btn-info">
+        Create Resource
+        </button>
     </div>
   );
 }
