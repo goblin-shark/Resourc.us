@@ -26,7 +26,6 @@ function createResource() {
       })
       .then((data) => {
         setTeams(data);
-        // console.log(data); ENDLESS RUNNING BUG!?
       })
       .catch((err) => {
         console.log("GET FAILED", err);
