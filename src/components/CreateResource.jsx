@@ -126,7 +126,6 @@ function createResource() {
         </select>
       </form>
       <div>
-        {/* Pressing enter here actually tries to create the resource form... hmm...*/}
         <InputTags
           onTag={setTags}
           tagColor='#48c774'
