@@ -180,24 +180,30 @@ function ResourceCard({ teamId }) {
         <button onClick={handleUpvote}>Upvote</button>
         <button onClick={handleDownvote}>Downvote</button>
       </div> */}
-      {_resource.map((resource) => (
-        <div
+      {_resource.map((resource, idx, arr) => (
+        console.log("RSC ARRAY IS: ", arr),
+        < div
           className="resourceCard"
           key={resource._id}
         >
           <div className="votes">
             <div className="voteCount">{resource.votes}</div>
             <div className="actions">
-              <button><i onClick={handleUpvote}  votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
+              <button><i onClick={handleUpvote} votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
               <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
             </div>
           </div>
           <div className="link">
             <Link to={resource.link}>{resource.link}</Link>
           </div>
+          {/* Display all tags of each resource*/}
+          <div className="tags">
+            {arr[idx].tags.map((tag) => <div className="tag">{tag}</div>)}
+          </div>
         </div>
-      ))}
-    </div>
+      ))
+      }
+    </div >
   );
 }
 
