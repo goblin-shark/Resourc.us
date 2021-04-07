@@ -4,10 +4,12 @@ const resourceController = {};
 resourceController.createResource = (req, res, next) => {
     const requestBody = req.body;
 
+    console.log("REQ BODY: ", requestBody)
     Resource.create({
         link: requestBody.link,
         teamId: requestBody.teamId,
-        category: requestBody.category
+        category: requestBody.category,
+        tags: requestBody.tags
     })
         .then(data => {
             res.locals.response = data;
