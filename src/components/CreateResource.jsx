@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import InputTags from "react-input-tags-hooks";
+import 'react-input-tags-hooks/build/index.css';
 
 function createResource() {
+
   // State
   const [_payload, setPayload] = useState({
     title: "",
@@ -11,8 +14,11 @@ function createResource() {
     description: "",
     category: "",
     votes: 0,
+    tags: []
   });
+
   const [_teams, setTeams] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:3000/teams/list")
       .then((response) => {
@@ -20,18 +26,19 @@ function createResource() {
       })
       .then((data) => {
         setTeams(data);
-        // console.log(data); ENDLESS RUNNING BUG!?
       })
       .catch((err) => {
         console.log("GET FAILED", err);
       });
   }, []);
-  function handleChange(event) {
+
+  const handleChange = (event) => {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
     console.log(_payload);
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
-  function handleClick(event) {
+
+  const handleClick = (event) => {
     event.preventDefault();
     //test if server is working
     // POST the payload to database
@@ -55,12 +62,17 @@ function createResource() {
     // ADD RESET STATE HERE AFTER SUMBIT
   }
 
-  function selectTeam(e) {
+  const setTags = (newTags) => {
+    setPayload({ ..._payload, tags: newTags }); // copies previous state and updates only changed key/values
+  }
+
+  const selectTeam = (e) => {
     const payload = _payload;
     payload.teamId = e.currentTarget.value;
     setPayload(payload);
     console.log(_payload);
   }
+
   return (
     <div className='container formContainer'>
       <h1>Create Resource Page</h1>
@@ -106,17 +118,22 @@ function createResource() {
             placeholder="Category"
           ></input>
         </div>
-
         <select onChange={selectTeam}>
           {_teams.map((team) => (
             <option value={team._id}>{team.name}</option>
           ))}
         </select>
-
-        <button onClick={handleClick} className="btn btn-lg btn-info">
-          Create Resource
-        </button>
       </form>
+      <div>
+        <InputTags
+          onTag={setTags}
+          tagColor='#48c774'
+          placeHolder="Press enter to add tags"
+        />
+      </div>
+      <button onClick={handleClick} className="btn btn-lg btn-info">
+        Create Resource
+        </button>
     </div>
   );
 }
