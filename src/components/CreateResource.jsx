@@ -5,12 +5,14 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import InputTags from "react-input-tags-hooks";
 import 'react-input-tags-hooks/build/index.css';
 
+
 function createResource() {
 
   // State
   const [_payload, setPayload] = useState({
     title: "",
     link: "",
+    image: "",
     description: "",
     category: "",
     votes: 0,
@@ -36,6 +38,38 @@ function createResource() {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
     console.log(_payload);
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
+  }
+
+  const handleUrlChange = (event) => {
+    const { name, value } = event.target;
+    // setPayload({ ..._payload, [name]: value });
+
+    fetch('http://localhost:3000/resource/scrape', {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ [name]: value })
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log('data', data);
+        setPayload({
+          ..._payload,
+          title: data['og:title'],
+          image: data['og:image'],
+          description: data['og:description'],
+          link: value
+        });
+      })
+      .catch((err) => {
+        console.log("Post Fail", err);
+      });
+
+    
   }
 
   const handleClick = (event) => {
@@ -72,17 +106,25 @@ function createResource() {
     setPayload(payload);
     console.log(_payload);
   }
+  
+  const renderImage = () => {
+    if (_payload.image) {
+      return (<img src={_payload.image} />)
+    }
+  }
 
   return (
     <div className='container formContainer'>
       <h1>Create Resource Page</h1>
-
+      <div className="metaImage">
+        {renderImage()}
+      </div>
       <form>
         <div className="form-group">
           <input
             onChange={handleChange}
             name="title"
-            value={_payload.title}
+            value={_payload.title || ''}
             autoComplete="off"
             className="form-control"
             placeholder="Title"
@@ -90,30 +132,30 @@ function createResource() {
         </div>
         <div className="form-group">
           <input
-            onChange={handleChange}
+            onChange={handleUrlChange}
             name="link"
-            value={_payload.link}
+            value={_payload.link || ''}
             autoComplete="off"
             className="form-control"
             placeholder="link"
           ></input>
         </div>
         <div className="form-group">
-          <input
+          <textarea
             onChange={handleChange}
             name="description"
-            value={_payload.description}
+            value={_payload.description || ''}
             autoComplete="off"
             className="form-control"
             placeholder="Description"
-          ></input>
+          ></textarea>
         </div>
         <div className="form-group">
           <input
             onChange={handleChange}
             name="category"
             autoComplete="off"
-            value={_payload.category}
+            value={_payload.category || ''}
             className="form-control"
             placeholder="Category"
           ></input>
