@@ -42,7 +42,7 @@ function createResource() {
 
   const handleUrlChange = (event) => {
     const { name, value } = event.target;
-    // setPayload({ ..._payload, [name]: value });
+    setPayload({ ..._payload, [name]: value });
 
     fetch('http://localhost:3000/resource/scrape', {
       method: "POST",
@@ -160,20 +160,22 @@ function createResource() {
             placeholder="Category"
           ></input>
         </div>
-        <select onChange={selectTeam}>
-          {_teams.map((team) => (
-            <option value={team._id}>{team.name}</option>
-          ))}
-        </select>
+        <div className="form-group">
+          <select className="form-control form-select" onChange={selectTeam}>
+            {_teams.map((team) => (
+              <option value={team._id}>{team.name}</option>
+            ))}
+          </select>
+        </div>
       </form>
-      <div>
+      <div className="form-group">
         <InputTags
           onTag={setTags}
           tagColor='#48c774'
           placeHolder="Press enter to add tags"
         />
       </div>
-      <button onClick={handleClick} className="btn btn-lg btn-info">
+      <button onClick={handleClick} className="btn btn-primary">
         Create Resource
         </button>
     </div>
