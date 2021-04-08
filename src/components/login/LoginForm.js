@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { login } from '../utility';
 
 export const LoginForm = () => {
   const [values, setValues] = useState({
@@ -25,6 +26,7 @@ export const LoginForm = () => {
       .then(data => {
         // Enter something that stores or handles cookies or JWT
         history.push("/");
+        login();
       })
       .catch(err => console.log('Auth Form won\'t fetch, error:', err));
     // alert(JSON.stringify(data))
@@ -43,18 +45,18 @@ export const LoginForm = () => {
   }
 
   return (
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleChange} />
-        </div>
+    <form onSubmit={onSubmit}>
+      <div className="form-group">
+        <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleChange} />
+      </div>
 
-        <div className="form-group">
-          <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
-        </div>
+      <div className="form-group">
+        <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
+      </div>
 
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">Log In</button>
-        </div>
-      </form>
+      <div className="form-group">
+        <button type="submit" className="btn btn-primary">Log In</button>
+      </div>
+    </form>
   )
 }

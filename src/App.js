@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 
 // import router
-import { Route, Link, useLocation } from "react-router-dom";
+import { Route, Link, useLocation, BrowserRouter, Switch } from "react-router-dom";
 
 // import pages
 import Home from "./pages/Home";
@@ -15,15 +15,17 @@ import Navbars from "./components/Navbar";
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
 import ResourceCard from "./components/ResourceCard"
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 
 function App() {
   const location = useLocation().pathname;
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
-  
+
 
   useLayoutEffect(() => {
-		if (location === '/teams') {
+    if (location === '/teams') {
       setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
     } else if (location === '/CreateTeam' || location === '/CreateResource' || location === '/login' || location === '/signup') {
       setButton('');
@@ -33,30 +35,39 @@ function App() {
   }, [location]);
 
   return (
-    <div className="outerContainer">
-      <Navbars />
-      <div className="innerContainer">
-        <header className="mainHeader">
-        <ul>
-          <li className="primary-action">{button}</li>
-          <li><Link to='/login'>Login</Link></li>
-          <li><Link to='/signup'>Signup</Link></li>
-        </ul>
-        </header>
-        <Route path="/" exact>{<Home></Home>}</Route>
-        <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
-        <Route path="/teams" exact component={Teams}></Route>
-        <Route path="/CreateResource">{<CreateResource></CreateResource>}</Route>
-        <Route path="/CreateTeam">{<CreateTeam></CreateTeam>}</Route>
-        <Route path="/signup">{<SignupPage></SignupPage>}</Route>
-        <Route path="/login">{<LoginPage></LoginPage>}</Route>
-        <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
+    <BrowserRouter>
+      <div className="outerContainer">
+        <Navbars />
+        <div className="innerContainer">
+          <header className="mainHeader">
+            <ul>
+              <li className="primary-action">{button}</li>
+              <li><Link to='/login'>Login</Link></li>
+              <li><Link to='/signup'>Signup</Link></li>
+            </ul>
+          </header>
+          <Switch>
+            <PublicRoute restricted={false} component={Home} path="/" exact />
+            <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
+            <Route path="/teams" exact component={Teams}></Route>
+            <PrivateRoute component={CreateResource} path="/CreateResource" exact />
+            <PrivateRoute component={CreateTeam} path="/CreateTeam" exact />
+            <Route path="/signup">{<SignupPage />}</Route>
+            <Route path="/login">{<LoginPage />}</Route>
+            <Route path="/ResourceCard">{<ResourceCard />}</Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 export default App;
 
+{/* 
+  <Route path="/" exact>{<Home />}</Route>
+<Route path="/CreateResource">{<CreateResource />}</Route>
+<Route path="/CreateTeam">{<CreateTeam />}</Route>
+*/}
 
 // Other Routes
 {/* <div className="App"> */ }
