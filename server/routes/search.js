@@ -15,7 +15,7 @@ let collection;
 
 router.get('/', async (request, response) => {
   try {
-    const test = 'eos'
+    const test = 'codesmith'
     await client.connect();
     collection = client.db(mongoData.MONGO_DB).collection("teams");
     let result = await collection.aggregate([
