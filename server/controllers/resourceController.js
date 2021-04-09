@@ -7,7 +7,8 @@ resourceController.createResource = (req, res, next) => {
     Resource.create({
         link: requestBody.link,
         teamId: requestBody.teamId,
-        category: requestBody.category
+        category: requestBody.category,
+        tags: requestBody.tags
     })
         .then(data => {
             res.locals.response = data;
