@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route } from 'react-router-dom';
+import ResourceCard from "./../components/ResourceCard"
 
 function HomePage() {
   // State for our three teams
@@ -54,25 +54,19 @@ function HomePage() {
   // }, [])
 
   // Temporarily going to just display a list of all resources on the homepage
-  useEffect(() => {
-    fetch("http://localhost:3000/resource/listAll")
-      .then(resp => resp.json())
-      .then(data => setResources(data))
-      .catch(err => {
-        alert("List All Resources Failed!")
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/resource/listAll")
+  //     .then(resp => resp.json())
+  //     .then(data => setResources(data))
+  //     .catch(err => {
+  //       alert("List All Resources Failed!")
+  //     })
+  // }, [])
 
   return (
     <div className="container">
       <h1>Home Page</h1>
-      {
-        _resources.map((resource, resourceIdx) =>
-          <div className="resourceCard" key={resource._id}>
-            <h1>{resource.link}</h1>
-          </div>
-        )
-      }
+      <ResourceCard teamId="allTeams"></ResourceCard>
 
     </div>
   );

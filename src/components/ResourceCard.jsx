@@ -3,17 +3,32 @@ import React, { useState, useEffect } from "react";
 const ResourceCard = ({ teamId }) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
-  const _payload = { "teamId": teamId }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/resource/list", {
-      method: "POST",
+  // VARIABLES FOR FETCH
+  let url = "http://localhost:3000/resource/list";
+  let _payload = { "teamId": teamId };
+  let fetchHeader = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(_payload),
+  };
+
+  if ( teamId === 'allTeams') {
+    url = "http://localhost:3000/resource/listAll";
+    fetchHeader = {
+      method: "GET",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(_payload),
-    })
+      }
+    };
+  }
+
+  useEffect(() => {
+    fetch(url, fetchHeader)
       .then((response) => {
         return response.json();
       })
@@ -22,7 +37,7 @@ const ResourceCard = ({ teamId }) => {
         setResource(data.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        alert("Error Listing Resources!")
+        alert(err)
       });
   }, [count]);
 
@@ -111,19 +126,25 @@ const ResourceCard = ({ teamId }) => {
           className="resourceCard"
           key={idx}
         >
-          <div className="votes">
-            <div className="voteCount">{resource.votes}</div>
-            <div className="actions">
-              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} className='bx bxs-upvote'></i></button>
-              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} className='bx bxs-downvote' ></i></button>
+          <div className="resourcePreview">
+            <div className="imageContainer">
+              <img src={resource.image} />
+            </div>
+            <div className="metaContainer">
+              <h3>{resource.title}</h3>
+              {/* Display all tags of each resource*/}
+              <div className="tags">
+                {arr[idx].tags.map((tag, idx) => <div key={"rsc" + idx} className="tag">{tag}</div>)}
+              </div>
             </div>
           </div>
-          <div className="link">
-            <a href={resource.link} target="_blank">{resource.link}</a>
-          </div>
-          {/* Display all tags of each resource*/}
-          <div className="tags">
-            {arr[idx].tags.map((tag, idx) => <div key={"rsc" + idx} className="tag">{tag}</div>)}
+          <a href={resource.link} target="_blank"></a>
+          <div className="votes">
+            <div className="actions">
+              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} className='bx bxs-up-arrow'></i></button>
+              <span className="voteCount">{resource.votes}</span>
+              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} className='bx bxs-down-arrow'></i></button>
+            </div>
           </div>
         </div>
       ))
