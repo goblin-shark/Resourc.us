@@ -84,7 +84,8 @@ const createResource = () => {
     })
       .then((resp) => {
         resp.json()
-        history.push("/teams");
+        // history.push("/teams");
+        history.goBack();
       })
       .catch((err) => {
         alert("Error Creating Resource!")
