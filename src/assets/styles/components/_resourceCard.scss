@@ -66,6 +66,15 @@
             height: auto;
             button {
                 color: #7e8893;
+                &:hover {
+                    .bxs-up-arrow {
+                        color: #009b0a;
+                    }
+                    .bxs-down-arrow {
+                        color: #ff0a0a;
+                    }
+                }
+                
             }
         }
         span {
