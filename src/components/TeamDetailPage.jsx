@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ResourceCard from "./ResourceCard"
-// import { Link } from 'react-router-dom';
 
-function TeamDetailPage({ match }) {
+const TeamDetailPage = ({ match }) => {
   // get the team ID from the URL params (destructure props.match.params)
   const { params: { id } } = match;
 
@@ -29,12 +28,11 @@ function TeamDetailPage({ match }) {
           .then(response => response.json())
           .then(data => {
             const currentResources = data.filter(r => r.teamId === id)
-            // console.log("resources: ", data)
             setTeamResources(currentResources)
           })
       })
       .catch(err => {
-        console.log('GET FAILED', err);
+        alert("Get Team List Failed!")
       })
   }, [])
 

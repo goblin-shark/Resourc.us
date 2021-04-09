@@ -19,7 +19,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
 
-function App() {
+const App = () => {
   const location = useLocation().pathname;
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
 
@@ -61,43 +61,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;
-
-{/* 
-  <Route path="/" exact>{<Home />}</Route>
-<Route path="/CreateResource">{<CreateResource />}</Route>
-<Route path="/CreateTeam">{<CreateTeam />}</Route>
-*/}
-
-// Other Routes
-{/* <div className="App"> */ }
-// <nav className="navbar">
-//   <ul className="navbar-nav">
-//     <li>
-//       <Link to="/">Home</Link>
-//     </li>
-//     <li>
-//       <Link to="/signup">Sign Up</Link>
-//     </li>
-//     <li>
-//       <Link to="/login">Log In</Link>
-//     </li>
-//     <li>
-//       <Link to="/teams">Teams</Link>
-//     </li>
-//   </ul>
-// </nav>
-{/* define the routes of the application */ }
-  // <Switch>
-  //   <Route exact path="/" component={HomePage}></Route>
-  //   <Route exact path="/signup" component={SignupPage}></Route>
-  //   <Route exact path="/login" component={LoginPage}></Route>
-  //   <Route exact path="/teams" component={AllTeamsPage}></Route>
-  //   {/* 
-  //   <Route path="/teams/create" component={}></Route>
-  //   <Route path="/teams/edit/:id" component={}></Route>
-  //   <Route path="/teams/:id" component={}></Route> 
-  //   <Route path="/users/:id" component={}></Route> 
-  //   */}
-  // </Switch>
-// </div>

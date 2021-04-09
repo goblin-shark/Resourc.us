@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-
-// Route this page
-// Render resource
-// Put request to upvote and downvote
 
 const ResourceCard = ({ teamId }) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
-  // const [_upvote, setUpvote] = useState({});
   const _payload = { "teamId": teamId }
 
   useEffect(() => {
@@ -35,9 +29,6 @@ const ResourceCard = ({ teamId }) => {
     console.log("TEAM ID in resource card: ", teamId)
   }, [count]);
 
-  //get resource id
-  //get current resource vote
-  //update state
   const handleUpvote = (event) => {
     event.preventDefault();
 
