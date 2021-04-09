@@ -46,12 +46,12 @@ function TeamDetailPage({ match }) {
           <h1>{t.name}</h1>
         </header>
         <section>
-        <div className="meta">
-          <div>{t.category}</div>
-        </div>
-        <article><p>{t.description}</p></article>  
+          <div className="meta">
+            <div>{t.category}</div>
+          </div>
+          <article><p>{t.description}</p></article>
         </section>
-        
+
         <ResourceCard teamId={t._id}></ResourceCard>
       </div>)}</div>
     </div>

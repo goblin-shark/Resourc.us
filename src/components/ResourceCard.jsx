@@ -26,7 +26,7 @@ function ResourceCard({ teamId }) {
       })
       .then((data) => {
         // console.log(data);
-        setResource(data)
+        setResource(data.sort((a, b) => b.votes - a.votes))
         console.log('_resource:', _resource)
       })
       .catch((err) => {
@@ -78,7 +78,7 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
-        setResource(newResource)
+        setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
         console.log("Post Fail", err);
@@ -124,7 +124,7 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
-        setResource(newResource)
+        setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
         console.log("Post Fail", err);
