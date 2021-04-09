@@ -12,7 +12,6 @@ function ResourceCard({ teamId }) {
   const _payload = { "teamId": teamId }
 
   useEffect(() => {
-    console.log(_payload)
     fetch("http://localhost:3000/resource/list", {
       method: "POST",
       headers: {
@@ -136,13 +135,13 @@ function ResourceCard({ teamId }) {
       {_resource.map((resource, idx, arr) => (
         < div
           className="resourceCard"
-          key={resource._id}
+          key={idx}
         >
           <div className="votes">
             <div className="voteCount">{resource.votes}</div>
             <div className="actions">
-              <button><i onClick={handleUpvote} votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
-              <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
+              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
             </div>
           </div>
           <div className="link">

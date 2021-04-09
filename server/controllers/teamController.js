@@ -12,7 +12,7 @@ teamController.createTeam = (req, res, next) => {
     })
         .then(data => {
             res.locals.response = data;
-            console.log('teamController.createTeam:', 'team created')
+            //console.log('teamController.createTeam:', 'team created')
             next();
         })
         .catch(err => {
@@ -30,7 +30,7 @@ teamController.listTeams = (req, res, next) => {
     Team.find({})
         .then(data => {
             res.locals.response = data;
-            console.log('teamController.listTeams:', 'list found')
+            //console.log('teamController.listTeams:', 'list found')
             next();
         })
         .catch(err => {
@@ -45,10 +45,10 @@ teamController.listTeams = (req, res, next) => {
 }
 
 teamController.findTeam = (req, res, next) => {
-    Team.findOne({ "_id": req.params.id})
+    Team.findOne({ "_id": req.params.id })
         .then(data => {
             res.locals.response = data;
-            console.log('teamController.listTeams:', 'team found')
+            //console.log('teamController.listTeams:', 'team found')
             next();
         })
         .catch(err => {
@@ -67,7 +67,7 @@ teamController.listThreeTeams = (req, res, next) => {
     Team.find({}, null, { limit: 3 })
         .then(data => {
             res.locals.response = data;
-            console.log('teamController.listThreeTeams:', '3 list found: ', res.locals.response)
+            //console.log('teamController.listThreeTeams:', '3 list found: ', res.locals.response)
             next();
         })
         .catch(err => {

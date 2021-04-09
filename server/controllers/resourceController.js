@@ -14,7 +14,7 @@ resourceController.createResource = (req, res, next) => {
     })
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.createResource:', 'resource created')
+            ////console.log('resourceController.createResource:', 'resource created')
             next();
         })
         .catch(err => {
@@ -36,7 +36,7 @@ resourceController.listResources = (req, res, next) => {
     })
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.listResources:', 'resources listed')
+            //console.log('resourceController.listResources:', 'resources listed')
             next();
         })
         .catch(err => {
@@ -58,7 +58,7 @@ resourceController.listThreeResources = (req, res, next) => {
     }, null, { limit: 3 })
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.listThreeResources:', '3 resources listed')
+            //console.log('resourceController.listThreeResources:', '3 resources listed')
             next();
         })
         .catch(err => {
@@ -76,7 +76,7 @@ resourceController.listAllResources = (req, res, next) => {
     Resource.find({})
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.listAllResources:', 'all resources listed')
+            ////console.log('resourceController.listAllResources:', 'all resources listed')
             next();
         })
         .catch(err => {
@@ -106,7 +106,7 @@ resourceController.upvoteResource = (req, res, next) => {
         })
         .then(data => {
             res.locals.response = data;
-            console.log('resourceController.upvoteResource:', 'resource upvoted')
+            ////console.log('resourceController.upvoteResource:', 'resource upvoted')
             next();
         })
         .catch(err => {
@@ -124,19 +124,19 @@ resourceController.urlScraper = (req, res, next) => {
     const requestBody = req.body;
 
     urlMetadata(requestBody.link).then(
-    function (metadata) { // success handler
-        res.locals.response = metadata;
-        next();
-    },
-    function (error) { // failure handler
-        next({
-            log: `urlScraper Resource - ERROR: ${error}`,
-            message: {
-                err: 'Error occured in resourceController.urlScraper',
-                message: error
-            }
+        function (metadata) { // success handler
+            res.locals.response = metadata;
+            next();
+        },
+        function (error) { // failure handler
+            next({
+                log: `urlScraper Resource - ERROR: ${error}`,
+                message: {
+                    err: 'Error occured in resourceController.urlScraper',
+                    message: error
+                }
+            })
         })
-    })
 }
 
 module.exports = resourceController;

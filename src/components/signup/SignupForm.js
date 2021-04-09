@@ -16,20 +16,24 @@ export const SignupForm = () => {
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
   const onSubmit = handleSubmit((data) => {
-    fetch('/user/', {
+    fetch('http://localhost:3000/user/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(values)
     })
-      .then(resp => console.log(resp))
+      .then(resp => resp.json())
       .then(data => {
         // Enter something that stores or handles cookies or JWT
+        alert("Signup Success!")
         history.push("/");
         login();
       })
-      .catch(err => console.log('Auth Form won\'t fetch, error:', err));
+      .catch(err => {
+        alert("Signup Failed!")
+      }
+      );
   })
 
   const handleChange = (e) => {

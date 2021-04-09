@@ -36,7 +36,6 @@ function createResource() {
 
   const handleChange = (event) => {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
-    console.log(_payload);
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
 
@@ -56,7 +55,6 @@ function createResource() {
         return response.json();
       })
       .then((data) => {
-        console.log('data', data);
         setPayload({
           ..._payload,
           title: data['og:title'],
@@ -69,7 +67,7 @@ function createResource() {
         console.log("Post Fail", err);
       });
 
-    
+
   }
 
   const handleClick = (event) => {
@@ -92,9 +90,6 @@ function createResource() {
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
-      })
       .catch((err) => {
         console.log("Post Fail", err);
       });
@@ -109,9 +104,8 @@ function createResource() {
     const payload = _payload;
     payload.teamId = e.currentTarget.value
     setPayload(payload);
-    console.log(_payload);
   }
-  
+
   const renderImage = () => {
     if (_payload.image) {
       return (<img src={_payload.image} />)

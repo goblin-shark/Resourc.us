@@ -39,8 +39,8 @@ function TeamDetailPage({ match }) {
   }, [])
 
   return (
-    <div class="container teamContainer">
-      <div className="teamCard teamHero">{team.map(t => <div key={t._id}>
+    <div className="container teamContainer">
+      <div className="teamCard teamHero">{team.map((t, i) => <div key={t._id}>
         <header>
           <div className="mask"></div>
           <h1>{t.name}</h1>
@@ -52,7 +52,7 @@ function TeamDetailPage({ match }) {
           <article><p>{t.description}</p></article>
         </section>
 
-        <ResourceCard teamId={t._id}></ResourceCard>
+        <ResourceCard key={"resourceCard" + i} teamId={t._id}></ResourceCard>
       </div>)}</div>
     </div>
   );

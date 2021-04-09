@@ -18,7 +18,6 @@ function createTeam() {
   function handleClick(event) {
     event.preventDefault();
     //test if server is working
-    console.log(_payload);
     // POST the payload to database
     fetch("http://localhost:3000/teams/create", {
       method: "POST",
