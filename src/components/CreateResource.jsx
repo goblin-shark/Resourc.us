@@ -38,8 +38,13 @@ function createResource() {
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (_payload.teamId === undefined) {
+      // TODO: Throw error here?
+      console.log("No Team Selected!")
+      return;
+    }
     //test if server is working
     // POST the payload to database
     fetch("http://localhost:3000/resource/create", {
@@ -68,7 +73,7 @@ function createResource() {
 
   const selectTeam = (e) => {
     const payload = _payload;
-    payload.teamId = e.currentTarget.value;
+    payload.teamId = e.currentTarget.value
     setPayload(payload);
     console.log(_payload);
   }
@@ -119,6 +124,7 @@ function createResource() {
           ></input>
         </div>
         <select onChange={selectTeam}>
+          <option>Select A Team</option>
           {_teams.map((team) => (
             <option value={team._id}>{team.name}</option>
           ))}

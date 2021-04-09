@@ -146,7 +146,7 @@ function ResourceCard({ teamId }) {
             </div>
           </div>
           <div className="link">
-            <Link to={resource.link}>{resource.link}</Link>
+            <a href={resource.link} target="_blank">{resource.link}</a>
           </div>
           {/* Display all tags of each resource*/}
           <div className="tags">
