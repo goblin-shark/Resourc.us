@@ -53,9 +53,9 @@ const createResource = () => {
       .then((data) => {
         setPayload({
           ..._payload,
-          title: data['og:title'],
-          image: data['og:image'],
-          description: data['og:description'],
+          title: data['title' || 'og:title'],
+          image: data['image' || 'og:image'],
+          description: data['description' || 'og:description'],
           link: value
         });
       })
