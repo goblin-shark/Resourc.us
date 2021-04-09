@@ -6,7 +6,7 @@ import InputTags from "react-input-tags-hooks";
 import 'react-input-tags-hooks/build/index.css';
 
 
-function createResource() {
+const createResource = () => {
 
   // State
   const [_payload, setPayload] = useState({
@@ -23,9 +23,7 @@ function createResource() {
 
   useEffect(() => {
     fetch("http://localhost:3000/teams/list")
-      .then((response) => {
-        return response.json(); //Parses to JSON
-      })
+      .then((resp) => resp.json())
       .then((data) => {
         setTeams(data);
         alert("Create Resource Success!")
@@ -52,9 +50,7 @@ function createResource() {
       },
       body: JSON.stringify({ [name]: value })
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((resp) => resp.json())
       .then((data) => {
         setPayload({
           ..._payload,
@@ -65,20 +61,18 @@ function createResource() {
         });
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("URL Scrape Failed")
       });
-
-
   }
 
   const handleClick = (event) => {
     event.preventDefault();
+
     if (_payload.teamId === undefined) {
-      // TODO: Throw error here?
-      console.log("No Team Selected!")
+      alert("Select a Team!")
       return;
     }
-    //test if server is working
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/create", {
       method: "POST",
@@ -98,7 +92,8 @@ function createResource() {
   }
 
   const setTags = (newTags) => {
-    setPayload({ ..._payload, tags: newTags }); // copies previous state and updates only changed key/values
+    // copies previous state and updates only changed key/values
+    setPayload({ ..._payload, tags: newTags });
   }
 
   const selectTeam = (e) => {

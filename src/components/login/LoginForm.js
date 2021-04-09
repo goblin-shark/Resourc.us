@@ -14,9 +14,6 @@ export const LoginForm = () => {
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
   const onSubmit = handleSubmit((data) => {
-
-    console.log("Req: ", values)
-
     fetch('http://localhost:3000/user/login', {
       method: 'POST',
       headers: {
@@ -26,19 +23,15 @@ export const LoginForm = () => {
     })
       .then(data => {
         // Enter something that stores or handles cookies or JWT
+        alert("Login Success!")
         history.push("/");
         login();
       })
-      .catch(err => console.log('Auth Form won\'t fetch, error:', err));
-    // alert(JSON.stringify(data))
-    // redirect to Homepage after successful login
-    // history.push('/')
+      .catch(err => alert("Login Failed!"));
   })
 
   const handleEmail = (e) => {
     const value = e.target.value;
-    const id = e.target.id;
-
     const valuesCopy = values;
     valuesCopy.email = value;
     setValues(valuesCopy);
@@ -46,8 +39,6 @@ export const LoginForm = () => {
 
   const handlePassword = (e) => {
     const value = e.target.value;
-    const id = e.target.id;
-
     const valuesCopy = values;
     valuesCopy.password = value;
     setValues(valuesCopy);

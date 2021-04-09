@@ -10,6 +10,7 @@ export const SignupForm = () => {
     firstname: '',
     lastname: ''
   });
+
   const { register, handleSubmit } = useForm()
   const history = useHistory()
 
@@ -32,8 +33,7 @@ export const SignupForm = () => {
       })
       .catch(err => {
         alert("Signup Failed!")
-      }
-      );
+      });
   })
 
   const handleChange = (e) => {
@@ -42,7 +42,6 @@ export const SignupForm = () => {
     const valuesCopy = values;
     valuesCopy[id] = value;
     setValues(valuesCopy);
-    console.log(values);
   }
 
   return (
