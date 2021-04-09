@@ -26,10 +26,9 @@ const createResource = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setTeams(data);
-        alert("Create Resource Success!")
       })
       .catch((err) => {
-        alert("Create Resource Failed! Please Try Again!")
+        alert("Error Redirecting to Create Resource Page!")
       });
   }, []);
 
@@ -82,11 +81,9 @@ const createResource = () => {
       },
       body: JSON.stringify(_payload),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((resp) => resp.json())
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Error Creating Resource!")
       });
     // ADD RESET STATE HERE AFTER SUMBIT
   }

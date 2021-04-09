@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-// import axios from "axios";
 
 const createTeam = () => {
-  //state
   const [_payload, setPayload] = useState({
     name: "",
     image: "",
@@ -19,7 +17,7 @@ const createTeam = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    //test if server is working
+
     // POST the payload to database
     fetch("http://localhost:3000/teams/create", {
       method: "POST",

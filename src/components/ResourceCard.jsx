@@ -20,13 +20,10 @@ const ResourceCard = ({ teamId }) => {
       .then((data) => {
         // Sort the resources by default highest vote count to lowest
         setResource(data.sort((a, b) => b.votes - a.votes))
-        console.log('_resource:', _resource)
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Error Listing Resources!")
       });
-
-    console.log("TEAM ID in resource card: ", teamId)
   }, [count]);
 
   const handleUpvote = (event) => {
@@ -117,8 +114,8 @@ const ResourceCard = ({ teamId }) => {
           <div className="votes">
             <div className="voteCount">{resource.votes}</div>
             <div className="actions">
-              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
-              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} className='bx bxs-upvote'></i></button>
+              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} className='bx bxs-downvote' ></i></button>
             </div>
           </div>
           <div className="link">
@@ -126,7 +123,7 @@ const ResourceCard = ({ teamId }) => {
           </div>
           {/* Display all tags of each resource*/}
           <div className="tags">
-            {arr[idx].tags.map((tag) => <div className="tag">{tag}</div>)}
+            {arr[idx].tags.map((tag, idx) => <div key={"rsc" + idx} className="tag">{tag}</div>)}
           </div>
         </div>
       ))

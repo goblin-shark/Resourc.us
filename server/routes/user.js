@@ -14,7 +14,7 @@ router.post('/create',
     userController.createUser,
     (req, res) => {
         console.log('create User router is working');
-        console.log(res.locals.response);
+        //console.log(res.locals.response);
         res.status(200).json(res.locals.response);
     }
 );
