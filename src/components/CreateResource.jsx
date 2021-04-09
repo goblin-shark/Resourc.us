@@ -74,6 +74,11 @@ function createResource() {
 
   const handleClick = (event) => {
     event.preventDefault();
+    if (_payload.teamId === undefined) {
+      // TODO: Throw error here?
+      console.log("No Team Selected!")
+      return;
+    }
     //test if server is working
     // POST the payload to database
     fetch("http://localhost:3000/resource/create", {
@@ -102,7 +107,7 @@ function createResource() {
 
   const selectTeam = (e) => {
     const payload = _payload;
-    payload.teamId = e.currentTarget.value;
+    payload.teamId = e.currentTarget.value
     setPayload(payload);
     console.log(_payload);
   }
