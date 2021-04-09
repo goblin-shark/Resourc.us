@@ -27,14 +27,14 @@ function createTeam() {
       },
       body: JSON.stringify(_payload)
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
+        history.push("/")
+        alert("Create Team Success!")
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Create Team Failed! Please Try Again!")
       });
     // ADD RESET STATE HERE AFTER SUMBIT
   }

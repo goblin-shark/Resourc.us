@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Render resource
 // Put request to upvote and downvote
 
-function ResourceCard({ teamId }) {
+const ResourceCard = ({ teamId }) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
   // const [_upvote, setUpvote] = useState({});
@@ -24,7 +24,7 @@ function ResourceCard({ teamId }) {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
+        // Sort the resources by default highest vote count to lowest
         setResource(data.sort((a, b) => b.votes - a.votes))
         console.log('_resource:', _resource)
       })
@@ -38,24 +38,17 @@ function ResourceCard({ teamId }) {
   //get resource id
   //get current resource vote
   //update state
-  function handleUpvote(event) {
-
-    console.log('COUNT', count)
+  const handleUpvote = (event) => {
     event.preventDefault();
+
     const id = event.target.id;
-    console.log(id);
-    // const parent = document.getElementById(id);
-    // const teamid = parent.getAttribute("value");
-    // const link = parent.getAttribute("link");
-    // const votes = Number(parent.getAttribute("votes"));
     const votes = Number(event.target.getAttribute('votes'));
-    // console.log('HERE',teamid);
     const payload = {
       "_id": id,
       "votes": votes,
       "upvote": true
     }
-    console.log('payload:', payload)
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/upvote", {
       method: "POST",
@@ -69,7 +62,6 @@ function ResourceCard({ teamId }) {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -77,31 +69,25 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
+        // Sort the resources by default highest vote count to lowest
         setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Upvote Failed!")
       });
   }
 
-  function handleDownvote(event) {
-
-    console.log('COUNT', count)
+  const handleDownvote = (event) => {
     event.preventDefault();
-    const id = event.target.id;
 
-    // const parent = document.getElementById(id);
-    // const teamid = parent.getAttribute("value");
-    // const link = parent.getAttribute("link");
-    // const votes = Number(parent.getAttribute("votes"));
+    const id = event.target.id;
     const votes = Number(event.target.getAttribute('votes'));
-    // console.log('HERE',teamid);
     const payload = {
       "_id": id,
       "votes": votes,
       "upvote": false
     }
-    console.log('payload:', payload)
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/upvote", {
       method: "POST",
@@ -115,7 +101,6 @@ function ResourceCard({ teamId }) {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -123,10 +108,11 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
+        // Sort the resources by default highest vote count to lowest
         setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Downvote Failed!")
       });
   }
 

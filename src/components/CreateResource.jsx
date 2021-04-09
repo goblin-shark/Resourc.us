@@ -28,9 +28,10 @@ function createResource() {
       })
       .then((data) => {
         setTeams(data);
+        alert("Create Resource Success!")
       })
       .catch((err) => {
-        console.log("GET FAILED", err);
+        alert("Create Resource Failed! Please Try Again!")
       });
   }, []);
 
