@@ -6,7 +6,7 @@ import InputTags from "react-input-tags-hooks";
 import 'react-input-tags-hooks/build/index.css';
 
 
-function createResource() {
+const createResource = () => {
 
   // State
   const [_payload, setPayload] = useState({
@@ -23,20 +23,17 @@ function createResource() {
 
   useEffect(() => {
     fetch("http://localhost:3000/teams/list")
-      .then((response) => {
-        return response.json(); //Parses to JSON
-      })
+      .then((resp) => resp.json())
       .then((data) => {
         setTeams(data);
       })
       .catch((err) => {
-        console.log("GET FAILED", err);
+        alert("Error Redirecting to Create Resource Page!")
       });
   }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target; //event target is each indivisual form that is being inputed
-    console.log(_payload);
     setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
   }
 
@@ -52,11 +49,8 @@ function createResource() {
       },
       body: JSON.stringify({ [name]: value })
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((resp) => resp.json())
       .then((data) => {
-        console.log('data', data);
         setPayload({
           ..._payload,
           title: data['og:title'],
@@ -66,20 +60,18 @@ function createResource() {
         });
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("URL Scrape Failed")
       });
-
-    
   }
 
   const handleClick = (event) => {
     event.preventDefault();
+
     if (_payload.teamId === undefined) {
-      // TODO: Throw error here?
-      console.log("No Team Selected!")
+      alert("Select a Team!")
       return;
     }
-    //test if server is working
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/create", {
       method: "POST",
@@ -89,29 +81,24 @@ function createResource() {
       },
       body: JSON.stringify(_payload),
     })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
+      .then((resp) => resp.json())
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Error Creating Resource!")
       });
     // ADD RESET STATE HERE AFTER SUMBIT
   }
 
   const setTags = (newTags) => {
-    setPayload({ ..._payload, tags: newTags }); // copies previous state and updates only changed key/values
+    // copies previous state and updates only changed key/values
+    setPayload({ ..._payload, tags: newTags });
   }
 
   const selectTeam = (e) => {
     const payload = _payload;
     payload.teamId = e.currentTarget.value
     setPayload(payload);
-    console.log(_payload);
   }
-  
+
   const renderImage = () => {
     if (_payload.image) {
       return (<img src={_payload.image} />)

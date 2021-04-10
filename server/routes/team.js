@@ -30,7 +30,7 @@ router.post('/create',
     teamController.createTeam,
     (req, res) => {
         console.log('create team router is working');
-        console.log(res.locals.response);
+        //console.log(res.locals.response);
         res.status(200).json(res.locals.response);
     }
 );

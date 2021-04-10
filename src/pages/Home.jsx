@@ -56,13 +56,10 @@ function HomePage() {
   // Temporarily going to just display a list of all resources on the homepage
   useEffect(() => {
     fetch("http://localhost:3000/resource/listAll")
-      .then(response => {
-        return response.json(); //Parses to JSON
-      }).then(data => {
-        setResources(data);
-        // console.log(data); ENDLESS RUNNING BUG!?
-      }).catch(err => {
-        console.log('GET FAILED', err);
+      .then(resp => resp.json())
+      .then(data => setResources(data))
+      .catch(err => {
+        alert("List All Resources Failed!")
       })
   }, [])
 

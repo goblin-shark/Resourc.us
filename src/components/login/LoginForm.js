@@ -16,42 +16,42 @@ export const LoginForm = () => {
   const onSubmit = handleSubmit((data) => {
     fetch('http://localhost:3000/user/login', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(values)
     })
-      .then(resp => console.log(resp))
       .then(data => {
         // Enter something that stores or handles cookies or JWT
+        alert("Login Success!")
         history.push("/");
         login();
       })
-      .catch(err => console.log('Auth Form won\'t fetch, error:', err));
-    // alert(JSON.stringify(data))
-    // redirect to Homepage after successful login
-    // history.push('/')
+      .catch(err => alert("Login Failed!"));
   })
 
-  const handleChange = (e) => {
+  const handleEmail = (e) => {
     const value = e.target.value;
-    const id = e.target.id;
-
     const valuesCopy = values;
-    valuesCopy[id] = value;
+    valuesCopy.email = value;
     setValues(valuesCopy);
-    console.log(values);
+  }
+
+  const handlePassword = (e) => {
+    const value = e.target.value;
+    const valuesCopy = values;
+    valuesCopy.password = value;
+    setValues(valuesCopy);
   }
 
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
-        <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleChange} />
+        <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleEmail} />
       </div>
 
       <div className="form-group">
-        <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handleChange} />
+        <input type="password" className="form-control" placeholder="password" id="password" ref={register} onChange={handlePassword} />
       </div>
 
       <div className="form-group">
