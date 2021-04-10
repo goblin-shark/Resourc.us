@@ -9,6 +9,8 @@ resourceController.createResource = (req, res, next) => {
         link: requestBody.link,
         teamId: requestBody.teamId,
         image: requestBody.image,
+        title: requestBody.title,
+        description: requestBody.description,
         category: requestBody.category,
         tags: requestBody.tags
     })

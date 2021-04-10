@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -7,7 +8,7 @@ import 'react-input-tags-hooks/build/index.css';
 
 
 const createResource = () => {
-
+  const history = useHistory();
   // State
   const [_payload, setPayload] = useState({
     title: "",
@@ -53,9 +54,9 @@ const createResource = () => {
       .then((data) => {
         setPayload({
           ..._payload,
-          title: data['og:title'],
-          image: data['og:image'],
-          description: data['og:description'],
+          title: data['title' || 'og:title'],
+          image: data['image' || 'og:image'],
+          description: data['description' || 'og:description'],
           link: value
         });
       })
@@ -81,7 +82,11 @@ const createResource = () => {
       },
       body: JSON.stringify(_payload),
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        resp.json()
+        // history.push("/teams");
+        history.goBack();
+      })
       .catch((err) => {
         alert("Error Creating Resource!")
       });
@@ -154,6 +159,7 @@ const createResource = () => {
         </div>
         <div className="form-group">
           <select className="form-control form-select" onChange={selectTeam}>
+            <option value="" selected>Which team?</option>
             {_teams.map((team) => (
               <option value={team._id}>{team.name}</option>
             ))}
