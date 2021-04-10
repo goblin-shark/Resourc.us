@@ -37,7 +37,6 @@ userController.validateUser = (req, res, next) => {
 					console.log('userController.validateUser:', 'Password comparison is a match');
 					next();
 				} else {
-					// console.log('userController.validateUser:', 'Password doesnt match');
 					next({
 						log: `validateUser - ERROR: Password doesn't match`,
 						message: { 

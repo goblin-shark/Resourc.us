@@ -16,3 +16,5 @@ mongoose.connect(url, {
 })
     .then(() => console.log('Connected to Resourcus DB.'))
     .catch(err => console.log(err));
+
+ // write line 11 - 18 as a function and export

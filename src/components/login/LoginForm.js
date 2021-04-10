@@ -14,6 +14,7 @@ export const LoginForm = () => {
   // 'data' is an object where the keys are the names of the form fields, 
   // and the values are the form input values
   const onSubmit = handleSubmit((data) => {
+
     fetch('http://localhost:3000/user/login', {
       method: 'POST',
       mode: 'no-cors',
@@ -47,7 +48,7 @@ export const LoginForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
-        <input className="form-control" type="email" placeholder="email" id="email" ref={register} onChange={handleChange} />
+        <input className="form-control" type="email" placeholder="email" id="email" value={values.email} ref={register} onChange={handleChange} />
       </div>
 
       <div className="form-group">
