@@ -1,4 +1,5 @@
 const { Resource } = require('../models/resourceModel');
+const urlMetadata = require('url-metadata');
 const resourceController = {};
 
 resourceController.createResource = (req, res, next) => {
@@ -7,6 +8,9 @@ resourceController.createResource = (req, res, next) => {
     Resource.create({
         link: requestBody.link,
         teamId: requestBody.teamId,
+        image: requestBody.image,
+        title: requestBody.title,
+        description: requestBody.description,
         category: requestBody.category,
         tags: requestBody.tags
     })
@@ -116,6 +120,27 @@ resourceController.upvoteResource = (req, res, next) => {
                 }
             })
         });
+}
+
+resourceController.urlScraper = (req, res, next) => {
+    const requestBody = req.body;
+
+    urlMetadata(requestBody.link).then(
+        function (metadata) {
+            //success handler
+            res.locals.response = metadata;
+            next();
+        },
+        function (error) {
+            //failure handler
+            next({
+                log: `urlScraper Resource - ERROR: ${error}`,
+                message: {
+                    err: 'Error occured in resourceController.urlScraper',
+                    message: error
+                }
+            })
+        })
 }
 
 module.exports = resourceController;
