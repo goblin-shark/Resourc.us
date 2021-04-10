@@ -19,43 +19,46 @@ userController.createUser = (req, res, next) => {
 		.catch(err => {
 			next({
 				log: `createUser - ERROR: ${err}`,
-				message: { 
+				message: {
 					err: 'Error occured in userController.createUser',
 					message: err
 				}
-			}) 
+			})
 		});
 }
 
 userController.validateUser = (req, res, next) => {
 	const requestBody = req.body;
 	console.log('userController.validateUser:', 'reached controller');
+
+	console.log('userController.validateUser: REQ ', req);
 	User.findOne({ email: requestBody.email }).exec()
 		.then(data => {
-			bcrypt.compare(requestBody.password, data.hash, function(err, result) {
+			bcrypt.compare(requestBody.password, data.hash, function (err, result) {
 				if (result === true) {
 					console.log('userController.validateUser:', 'Password comparison is a match');
 					next();
 				} else {
+					console.log('userController.validateUser:', 'Password doesnt match');
 					next({
 						log: `validateUser - ERROR: Password doesn't match`,
-						message: { 
+						message: {
 							err: 'Error occured in userController.bcrypt',
 							message: 'Password does not match'
 						}
-					}) 
+					})
 				}
 			})
-			
+
 		})
 		.catch(err => {
 			next({
 				log: `validateUser - ERROR: ${err}`,
-				message: { 
+				message: {
 					err: 'Error occured in userController.validateUser',
 					message: err
 				}
-			}) 
+			})
 		});
 }
 

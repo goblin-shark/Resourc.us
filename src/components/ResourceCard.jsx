@@ -1,62 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 
-// Route this page
-// Render resource
-// Put request to upvote and downvote
-
-function ResourceCard({ teamId }) {
+const ResourceCard = ({ teamId }) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
-  // const [_upvote, setUpvote] = useState({});
-  const _payload = { "teamId": teamId }
 
-  useEffect(() => {
-    console.log(_payload)
-    fetch("http://localhost:3000/resource/list", {
-      method: "POST",
+  // VARIABLES FOR FETCH
+  let url = "http://localhost:3000/resource/list";
+  let _payload = { "teamId": teamId };
+  let fetchHeader = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(_payload),
+  };
+
+  if ( teamId === 'allTeams') {
+    url = "http://localhost:3000/resource/listAll";
+    fetchHeader = {
+      method: "GET",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(_payload),
-    })
+      }
+    };
+  }
+
+  useEffect(() => {
+    fetch(url, fetchHeader)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
-        setResource(data)
-        console.log('_resource:', _resource)
+        // Sort the resources by default highest vote count to lowest
+        setResource(data.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert(err)
       });
-
-    console.log("TEAM ID in resource card: ", teamId)
   }, [count]);
 
-  //get resource id
-  //get current resource vote
-  //update state
-  function handleUpvote(event) {
-
-    console.log('COUNT', count)
+  const handleUpvote = (event) => {
     event.preventDefault();
+
     const id = event.target.id;
-    console.log(id);
-    // const parent = document.getElementById(id);
-    // const teamid = parent.getAttribute("value");
-    // const link = parent.getAttribute("link");
-    // const votes = Number(parent.getAttribute("votes"));
     const votes = Number(event.target.getAttribute('votes'));
-    // console.log('HERE',teamid);
     const payload = {
       "_id": id,
       "votes": votes,
       "upvote": true
     }
-    console.log('payload:', payload)
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/upvote", {
       method: "POST",
@@ -70,7 +65,6 @@ function ResourceCard({ teamId }) {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -78,31 +72,25 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
-        setResource(newResource)
+        // Sort the resources by default highest vote count to lowest
+        setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Upvote Failed!")
       });
   }
 
-  function handleDownvote(event) {
-
-    console.log('COUNT', count)
+  const handleDownvote = (event) => {
     event.preventDefault();
-    const id = event.target.id;
 
-    // const parent = document.getElementById(id);
-    // const teamid = parent.getAttribute("value");
-    // const link = parent.getAttribute("link");
-    // const votes = Number(parent.getAttribute("votes"));
+    const id = event.target.id;
     const votes = Number(event.target.getAttribute('votes'));
-    // console.log('HERE',teamid);
     const payload = {
       "_id": id,
       "votes": votes,
       "upvote": false
     }
-    console.log('payload:', payload)
+
     // POST the payload to database
     fetch("http://localhost:3000/resource/upvote", {
       method: "POST",
@@ -116,7 +104,6 @@ function ResourceCard({ teamId }) {
         return response.json();
       })
       .then((data) => {
-        console.log('data sent back:', data);
         const newResource = _resource;
         for (let i = 0; i < newResource.length; i++) {
           if (newResource[i].link === data.link) {
@@ -124,10 +111,11 @@ function ResourceCard({ teamId }) {
           }
         }
         setCount(count + 1);
-        setResource(newResource)
+        // Sort the resources by default highest vote count to lowest
+        setResource(newResource.sort((a, b) => b.votes - a.votes))
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Downvote Failed!")
       });
   }
 
@@ -136,21 +124,27 @@ function ResourceCard({ teamId }) {
       {_resource.map((resource, idx, arr) => (
         < div
           className="resourceCard"
-          key={resource._id}
+          key={idx}
         >
-          <div className="votes">
-            <div className="voteCount">{resource.votes}</div>
-            <div className="actions">
-              <button><i onClick={handleUpvote} votes={resource.votes} id={resource._id} class='bx bxs-upvote'></i></button>
-              <button><i onClick={handleDownvote} votes={resource.votes} id={resource._id} class='bx bxs-downvote' ></i></button>
+          <div className="resourcePreview">
+            <div className="imageContainer">
+              <img src={resource.image} />
+            </div>
+            <div className="metaContainer">
+              <h3>{resource.title}</h3>
+              {/* Display all tags of each resource*/}
+              <div className="tags">
+                {arr[idx].tags.map((tag, idx) => <div key={"rsc" + idx} className="tag">{tag}</div>)}
+              </div>
             </div>
           </div>
-          <div className="link">
-            <a href={resource.link} target="_blank">{resource.link}</a>
-          </div>
-          {/* Display all tags of each resource*/}
-          <div className="tags">
-            {arr[idx].tags.map((tag) => <div className="tag">{tag}</div>)}
+          <a href={resource.link} target="_blank"></a>
+          <div className="votes">
+            <div className="actions">
+              <button key={"button1"} ><i onClick={handleUpvote} votes={resource.votes} id={resource._id} className='bx bxs-up-arrow'></i></button>
+              <span className="voteCount">{resource.votes}</span>
+              <button key={"button2"} ><i onClick={handleDownvote} votes={resource.votes} id={resource._id} className='bx bxs-down-arrow'></i></button>
+            </div>
           </div>
         </div>
       ))

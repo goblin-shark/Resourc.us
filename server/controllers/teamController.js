@@ -6,7 +6,7 @@ teamController.createTeam = (req, res, next) => {
 
     Team.create({
         image: requestBody.image,
-        name: requestBody.name, // req.body.team.name
+        name: requestBody.name,  //req.body.team.name
         category: requestBody.category,
         description: requestBody.description
     })
@@ -45,7 +45,7 @@ teamController.listTeams = (req, res, next) => {
 }
 
 teamController.findTeam = (req, res, next) => {
-    Team.findOne({ "_id": req.params.id})
+    Team.findOne({ "_id": req.params.id })
         .then(data => {
             res.locals.response = data;
             console.log('teamController.listTeams:', 'team found')

@@ -7,6 +7,7 @@ const db = require('./models/db');
 const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
 const resourceRouter = require('./routes/resource');
+const searchDatabase = require('./routes/search')
 
 const PORT = 3000;
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRouter);
 app.use('/teams', teamRouter);
 app.use('/resource', resourceRouter);
+app.use('/search', searchDatabase);
 
 // Renders index.html with static assets
 app.use(express.static(path.join(__dirname, '../dist')));

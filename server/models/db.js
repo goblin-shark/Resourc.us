@@ -8,6 +8,11 @@ const MONGO_DB = 'resourcus';
 
 const url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/`;
 
+//error in concsole noting that collection.ensureIndex is deprecated, the following corrects the error per the new update and their docs
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 mongoose.connect(url, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
@@ -17,4 +22,10 @@ mongoose.connect(url, {
     .then(() => console.log('Connected to Resourcus DB.'))
     .catch(err => console.log(err));
 
- // write line 11 - 18 as a function and export
+module.exports = {
+    MONGO_USERNAME,
+    MONGO_PASSWORD,
+    MONGO_HOSTNAME,
+    MONGO_DB,
+    url
+}

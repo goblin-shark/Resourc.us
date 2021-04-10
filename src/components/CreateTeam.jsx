@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-// import axios from "axios";
 
-function createTeam() {
-  //state
+const createTeam = () => {
   const [_payload, setPayload] = useState({
     name: "",
     image: "",
@@ -10,15 +8,16 @@ function createTeam() {
     category: "",
   });
 
-  function handleChange(event) {
-    const { name, value } = event.target; //event target is each indivisual form that is being inputed
-
-    setPayload({ ..._payload, [name]: value }); // copies previous state and updates only changed key/values
+  const handleChange = (event) => {
+    //event target is each indivisual form that is being inputed
+    const { name, value } = event.target;
+    // copies previous state and updates only changed key/values
+    setPayload({ ..._payload, [name]: value });
   }
-  function handleClick(event) {
+
+  const handleClick = (event) => {
     event.preventDefault();
-    //test if server is working
-    console.log(_payload);
+
     // POST the payload to database
     fetch("http://localhost:3000/teams/create", {
       method: "POST",
@@ -28,14 +27,13 @@ function createTeam() {
       },
       body: JSON.stringify(_payload)
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        history.push("/")
+        alert("Create Team Success!")
       })
       .catch((err) => {
-        console.log("Post Fail", err);
+        alert("Create Team Failed! Please Try Again!")
       });
     // ADD RESET STATE HERE AFTER SUMBIT
   }
