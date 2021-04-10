@@ -11,12 +11,13 @@ const Search = ({setShowResults, setSearchData}) => {
   }
   function searchDatabase(e, val) {
     let textInput = e;
-    console.log('textInput', e, 'val', val)
     let data = fetch(`http://localhost:3000/search?query=${e}`)
     .then(response => response.json())
     .then(data => {
-      console.log('search results received from DB', data)
-      setSearchData(el => [...data])
+      if(!data.length || !data){
+        return;
+      }
+      setSearchData(el => [data])
       onClick();
     })
     .catch(err => console.log(err));
