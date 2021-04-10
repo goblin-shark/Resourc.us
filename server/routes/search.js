@@ -14,7 +14,6 @@ router.use(Cors());
 let collection;
 
 router.get('/', async (request, response) => {
-  console.log('request query?', request.query)
   try {
     const test = 'codesmith'
     await client.connect();
@@ -34,7 +33,7 @@ router.get('/', async (request, response) => {
       }
       }
   ]).toArray();
-  console.log('hitting backend', result)
+  console.log('retrieving search queries', result)
   response.status(200).send(result);
 } catch (e) {
       response.status(500).send({ message: e.message });
