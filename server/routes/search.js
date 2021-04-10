@@ -14,6 +14,7 @@ router.use(Cors());
 let collection;
 
 router.get('/', async (request, response) => {
+  console.log('request query?', request.query)
   try {
     const test = 'codesmith'
     await client.connect();
@@ -23,7 +24,7 @@ router.get('/', async (request, response) => {
         "$search": {
           "index": "ind1",
           "autocomplete": {
-              "query": `${test}`,
+              "query": `${request.query.query}`,
               "path": "description",
               "fuzzy": {
                   "maxEdits": 2,
@@ -33,8 +34,8 @@ router.get('/', async (request, response) => {
       }
       }
   ]).toArray();
+  console.log('hitting backend', result)
   response.status(200).send(result);
-  console.log('collection', result)
 } catch (e) {
       response.status(500).send({ message: e.message });
   }

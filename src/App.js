@@ -1,7 +1,7 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect} from "react";
 
 // import router
-import { Route, Link, useLocation } from "react-router-dom";
+import { Route, Link, useLocation, Redirect} from "react-router-dom";
 
 // import pages
 import Home from "./pages/Home";
@@ -15,15 +15,19 @@ import Navbars from "./components/Navbar";
 import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
 import ResourceCard from "./components/ResourceCard"
+import Search from "./components/Search"
+import FilteredResults from "./components/FilteredResults";
 
 
 function App() {
   const location = useLocation().pathname;
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
-  
+  const [showResults, setShowResults] = React.useState(false)
+  const [results, setSearchData] = React.useState([])
+
 
   useLayoutEffect(() => {
-		if (location === '/teams') {
+		if (location === '/teams' | '/searchResults') {
       setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
     } else if (location === '/CreateTeam' || location === '/CreateResource' || location === '/login' || location === '/signup') {
       setButton('');
@@ -32,6 +36,7 @@ function App() {
     }
   }, [location]);
 
+
   return (
     <div className="outerContainer">
       <Navbars />
@@ -39,10 +44,12 @@ function App() {
         <header className="mainHeader">
         <ul>
           <li className="primary-action">{button}</li>
+          <Search setShowResults= {setShowResults} setSearchData = {setSearchData}/>
           <li><Link to='/login'>Login</Link></li>
           <li><Link to='/signup'>Signup</Link></li>
         </ul>
         </header>
+        { showResults && <Redirect to={{ pathname: '/searchResults',  state: { search: results }}}/>}
         <Route path="/" exact>{<Home></Home>}</Route>
         <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
         <Route path="/teams" exact component={Teams}></Route>
@@ -51,14 +58,17 @@ function App() {
         <Route path="/signup">{<SignupPage></SignupPage>}</Route>
         <Route path="/login">{<LoginPage></LoginPage>}</Route>
         <Route path="/ResourceCard">{<ResourceCard></ResourceCard>}</Route>
+        <Route path="/searchResults" exact component= {FilteredResults}></Route>
       </div>
     </div>
   );
 }
 export default App;
-
-
+//use route???
+// <Route path="/filteredResult">{<FilteredResults ></FilteredResults>}</Route>
 // Other Routes
+
+
 {/* <div className="App"> */ }
 // <nav className="navbar">
 //   <ul className="navbar-nav">
