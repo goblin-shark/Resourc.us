@@ -1,12 +1,33 @@
 import React, { useState, useEffect } from "react";
 
-const ResourceCard = ({ teamId }) => {
+const ResourceCard = (props) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    if(props.resources) {
+      setResource(props.resources.sort((a, b) => b.votes - a.votes))
+    }
+  })
+
+//the props.resources resource info:
+//   category: "User Experience"
+// createdAt: "2021-04-09T09:01:10.284Z"
+// description: "Our latest benchmark of Mobile UX reveals that 52% of e-commerce sites still have severe mobile UX issues — leading to users abandoning their mobile shopping experience. Here are 18 common Mobile UX pitfalls."
+// image: "https://cdn.baymard.com/data-broker/graphic-300396-937889825ef489278518d3511613950d.jpg"
+// link: "https://baymard.com/blog/2021-current-state-mobile-ecommerce"
+// tags: "Design"
+// teamId: "60682ccc27cd25b81f7c3e8b"
+// title: "The Current State of Mobile UX (18 Common Pitfalls)"
+// updatedAt: "2021-04-09T09:03:57.633Z"
+// votes: 1
+// __v: 0
+// _id: "607017d6662c6028c8e0bc6d"
+
+if(!props.resources){
   // VARIABLES FOR FETCH
   let url = "http://localhost:3000/resource/list";
-  let _payload = { "teamId": teamId };
+  let _payload = { "teamId": props.teamId };
   let fetchHeader = {
     method: "POST",
     headers: {
@@ -16,7 +37,7 @@ const ResourceCard = ({ teamId }) => {
     body: JSON.stringify(_payload),
   };
 
-  if ( teamId === 'allTeams') {
+  if (props.teamId === 'allTeams') {
     url = "http://localhost:3000/resource/listAll";
     fetchHeader = {
       method: "GET",
@@ -40,6 +61,9 @@ const ResourceCard = ({ teamId }) => {
         alert(err)
       });
   }, [count]);
+
+}
+
 
   const handleUpvote = (event) => {
     event.preventDefault();
@@ -118,6 +142,8 @@ const ResourceCard = ({ teamId }) => {
         alert("Downvote Failed!")
       });
   }
+
+  console.log('passing resource card', _resource)
 
   return (
     <div className="container">

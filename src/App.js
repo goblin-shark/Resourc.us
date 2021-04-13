@@ -19,6 +19,7 @@ import Search from "./components/Search";
 import FilteredResults from "./components/FilteredResults";
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import SearchNav from "./components/SearchNav";
 
 
 const App = () => {
@@ -62,7 +63,7 @@ const App = () => {
             <Route path="/signup">{<SignupPage />}</Route>
             <Route path="/login">{<LoginPage />}</Route>
             <Route path="/ResourceCard">{<ResourceCard />}</Route>
-            <Route path="/searchResults" exact component= {FilteredResults}></Route>
+            <Route path="/searchResults" exact component= {SearchNav}></Route>
           </Switch>
         </div>
       </div>

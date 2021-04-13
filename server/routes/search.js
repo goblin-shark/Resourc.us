@@ -15,9 +15,10 @@ let collection;
 
 router.get('/', async (request, response) => {
   try {
-    let finalResponse = []
+    let responseObj = {};
+
     await client.connect();
-    collectionTeam = client.db(mongoData.MONGO_DB).collection("teams");
+    let collectionTeam = client.db(mongoData.MONGO_DB).collection("teams");
     let teamResult = await collectionTeam.aggregate([
       {
         "$search": {
@@ -33,35 +34,54 @@ router.get('/', async (request, response) => {
       }
       }
   ]).toArray();
+  responseObj.team = teamResult;
 
-  finalResponse.push(teamResult);
+  //functionality to grab tags
+  // collectionTags = client.db(mongoData.MONGO_DB).collection("resources");
+  // let resultTags = await collectionTags.aggregate([
+  //     {
+  //       $unwind: "$tags"
+  //     }
+  //   ]).toArray()
 
-  collectionTags = client.db(mongoData.MONGO_DB).collection("resources");
-  let resultTags = await collectionTags.aggregate([
-      {
-        $unwind: "$tags"
-      }
-    ]).toArray()
+  // function Equals(resourceTag, userQuery){
+  //   resourceTag = resourceTag.toLowerCase()
+  //   userQuery = userQuery.toLowerCase()
 
-  function looselyEquals(resourceTag, userQuery){
-    resourceTag = resourceTag.toLowerCase()
-    userQuery = userQuery.toLowerCase()
-    console.log("resourceTag", resourceTag, "userQuery", userQuery)
-    if(resourceTag == userQuery) return true;
-    return false
-  }
+  //   if(resourceTag == userQuery) return true;
+  //   return false
+  // }
 
-  let resourceArray = [];
-  if(resultTags) {
-    for(let resources of resultTags) {
-      if(looselyEquals(resources.tags, request.query.query)){
-        resourceArray.push(resources)
-      }
+  
+  // let resourceArray = [];
+  // if(resultTags) {
+  //   for(let resources of resultTags) {
+  //     if(Equals(resources.tags, request.query.query)){
+  //       resourceArray.push(resources)
+  //     }
+  //   }
+  // }
+
+  let collectionRes = client.db(mongoData.MONGO_DB).collection("resources");
+  let resourcesArr = await collectionRes.aggregate([
+    {
+      "$search": {
+        "autocomplete": {
+            "query": `${request.query.query}`,
+            "path": "title",
+            "fuzzy": {
+                "maxEdits": 2,
+                "prefixLength": 3
+            }
+        }
     }
-  }
+    }
+]).toArray();
 
-  finalResponse.push(resourceArray)
-  response.status(200).send(finalResponse);
+
+  responseObj.tags = resourcesArr;
+  response.status(200).send(responseObj);
+
 } catch (e) {
       response.status(500).send({ message: e.message });
   }

@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Link, Route } from 'react-router-dom';
 
 
-function Teams() {
+function Teams(props) {
   const [_teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    if(props.teams){
+      setTeams(props.teams);
+    }
+  })
 
   useEffect(() => {
 
     fetch("http://localhost:3000/teams/list").then(response => {
       return response.json(); //Parses to JSON
     }).then(data => {
-      setTeams(data);
+      if(!props.teams) setTeams(data);
       // console.log(data); ENDLESS RUNNING BUG!?
     }).catch(err => {
       console.log('GET FAILED', err);
