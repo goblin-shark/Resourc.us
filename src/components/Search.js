@@ -6,17 +6,15 @@ const Search = ({setShowResults, setSearchData}) => {
 
   const resultArr = [];
 
-  const onClick = (data) => {
+  const onClick = () => {
     setShowResults(true);
   }
   function searchDatabase(e, val) {
     let textInput = e;
-    console.log('textInput', e, 'val', val)
     let data = fetch(`http://localhost:3000/search?query=${e}`)
     .then(response => response.json())
     .then(data => {
-      console.log('search results received from DB', data)
-      setSearchData(el => [...data])
+      setSearchData(el => data)
       onClick();
     })
     .catch(err => console.log(err));
@@ -37,3 +35,4 @@ const Search = ({setShowResults, setSearchData}) => {
 
 
 export default Search;
+
