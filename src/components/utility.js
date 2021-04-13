@@ -1,6 +1,7 @@
 //creates the token to be used for local storage
 const TOKEN_KEY = 'jwt';
 
+
 //sets the token key in users local storage
 export const login = () => {
   localStorage.setItem(TOKEN_KEY, 'TestLogin');

@@ -3,6 +3,9 @@ const cors = require('cors')
 const app = express();
 const path = require('path');
 const db = require('./models/db');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const userRouter = require('./routes/user');
 const teamRouter = require('./routes/team');
