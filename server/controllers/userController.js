@@ -39,6 +39,7 @@ userController.validateUser = (req, res, next) => {
 					console.log('userController.validateUser:', 'Password comparison is a match');
 					console.log('userController.validateUser USER ID:', data._id);
 					res.locals.user_id = data._id;
+					res.locals.firstname = data.firstname;
 					next();
 				} else {
 					console.log('userController.validateUser:', 'Password doesnt match');

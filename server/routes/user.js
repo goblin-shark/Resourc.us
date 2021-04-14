@@ -8,7 +8,8 @@ router.post('/login',
     authController.generateAccessToken,
     (req, res) => {
         console.log('login User router is working');
-        res.status(200).json(res.locals.token);
+        res.status(200).json({ token: res.locals.token, 
+                                name: res.locals.firstname});
     }
 );
 

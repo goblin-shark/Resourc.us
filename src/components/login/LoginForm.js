@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { login } from '../utility';
+import { login , setUser} from '../utility';
 
 export const LoginForm = () => {
   const [values, setValues] = useState({
@@ -26,7 +26,9 @@ export const LoginForm = () => {
       .then(data => {
         // Enter something that stores or handles cookies or JWT
         alert("Login Success!")
-        document.cookie = `token=${data}`
+        console.log("Data: ", data);
+        document.cookie = `token=${data.token}`
+        localStorage.username = data.name;
         history.push("/");
         login();
       })

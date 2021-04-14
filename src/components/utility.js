@@ -1,7 +1,6 @@
 //creates the token to be used for local storage
 const TOKEN_KEY = 'OldTokenKey';
 
-
 //sets the token key in users local storage
 export const login = () => {
   localStorage.setItem(TOKEN_KEY, 'TestLogin');

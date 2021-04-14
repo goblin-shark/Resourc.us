@@ -62,7 +62,6 @@ teamController.findTeam = (req, res, next) => {
         });
 }
 
-
 teamController.listThreeTeams = (req, res, next) => {
     Team.find({}, null, { limit: 3 })
         .then(data => {

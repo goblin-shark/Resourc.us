@@ -19,6 +19,7 @@ import Search from "./components/Search";
 import FilteredResults from "./components/FilteredResults";
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import { isLogin } from './components/utility';
 
 
 const App = () => {
@@ -26,7 +27,6 @@ const App = () => {
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
-
 
   useLayoutEffect(() => {
 		if (location === '/teams' | '/searchResults') {
@@ -48,8 +48,8 @@ const App = () => {
             <ul>
               <li className="primary-action">{button}</li>
               <Search setShowResults= {setShowResults} setSearchData = {setSearchData}/>
-              <li><Link to='/login'>Login</Link></li>
-              <li><Link to='/signup'>Signup</Link></li>
+              {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {localStorage.username} </li>}
+              {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>
           { showResults && <Redirect to={{ pathname: '/searchResults',  state: { search: results }}}/>}
