@@ -17,7 +17,7 @@ authController.generateAccessToken = (req, res, next) => {
     next(e)
   }
 
-  res.cookie("jwt", res.locals.token, { secure: true, httpOnly: true })
+  res.cookie("jwt", res.locals.token)
   console.log("Done generating access token: ", res.locals.token)
   next();
 }
@@ -25,6 +25,7 @@ authController.generateAccessToken = (req, res, next) => {
 authController.authenticateToken = (req, res, next) => {
 
   console.log("Inside authenticate token. COOKIES: ", req.cookies.token)
+  console.log("Inside authenticate token. COOKIES: ", req.headers)
   try{
     jwt.verify(req.cookies.token, "09f26e402586e2faa8da4c98a35f1b20d6b033c60")
   } catch(e) {
@@ -33,7 +34,6 @@ authController.authenticateToken = (req, res, next) => {
   }
 
   console.log("Done authenticating token");
-
   next()
 }
 

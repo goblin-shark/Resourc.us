@@ -65,7 +65,7 @@ const createResource = () => {
       });
   }
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
 
     if (_payload.teamId === undefined) {
@@ -73,23 +73,40 @@ const createResource = () => {
       return;
     }
 
-    // POST the payload to database
-    fetch("http://localhost:3000/resource/create", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(_payload),
+    await fetch("http://localhost:3000/user/authenticate", {
+      method: 'POST',
+      //mode: 'no-cors',
+      credentials: 'include',
     })
-      .then((resp) => {
-        resp.json()
-        // history.push("/teams");
-        history.goBack();
+      .then(rsp => rsp.json())
+      .then(data => {
+        console.log("return true")
+        // POST the payload to database
       })
-      .catch((err) => {
-        alert("Error Creating Resource!")
-      });
+      .catch((e) => {
+        alert("Error validating user")
+        console.log("Return false: ", e)
+        return;
+      })
+    
+      await fetch("http://localhost:3000/resource/create", {
+            method: "POST",
+            headers: {
+              Accept: "application/json, text/plain, */*",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(_payload),
+          })
+            .then((resp) => {
+              resp.json()
+              // history.push("/teams");
+              history.goBack();
+            })
+            .catch((err) => {
+              alert("Error Creating Resource!")
+              return;
+            });
+
     // ADD RESET STATE HERE AFTER SUMBIT
   }
 
@@ -160,8 +177,8 @@ const createResource = () => {
         <div className="form-group">
           <select className="form-control form-select" onChange={selectTeam}>
             <option value="" selected>Which team?</option>
-            {_teams.map((team) => (
-              <option value={team._id}>{team.name}</option>
+            {_teams.map((team, idx) => (
+              <option key={'team'+idx} value={team._id}>{team.name}</option>
             ))}
           </select>
         </div>

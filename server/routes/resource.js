@@ -4,7 +4,6 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 
 router.post('/create',
-    authController.authenticateToken,
     resourceController.createResource,
     (req, res) => {
         console.log('create resource router is working');

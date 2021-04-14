@@ -4,6 +4,7 @@ const resourceController = {};
 
 resourceController.createResource = (req, res, next) => {
     const requestBody = req.body;
+    console.log("REQUST BODY: ", requestBody)
 
     Resource.create({
         link: requestBody.link,

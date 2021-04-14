@@ -5,6 +5,7 @@ const path = require('path');
 const db = require('./models/db');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 
 dotenv.config();
 
@@ -15,12 +16,17 @@ const searchDatabase = require('./routes/search')
 
 const PORT = 3000;
 
-app.use(cookieParser());
-app.use(cors())
+var corsOptions = {
+    origin: 'http://localhost:8080',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    credentials: true,
+}
 
 // HANDLE ASSETS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(cors(corsOptions))
 
 // ROUTES
 app.use('/user', userRouter);
