@@ -23,13 +23,14 @@ authController.generateAccessToken = (req, res, next) => {
 }
 
 authController.authenticateToken = (req, res, next) => {
-  const token = req.body.token
 
-  console.log("Inside authenticate token. COOKIES: ", req.cookies)
-  jwt.verify(token, "09f26e402586e2faa8da4c98a35f1b20d6b033c60", (err) => {
-    console.log("ERROR VERIFYING TOKEN", err)
-    next(err)
-  })
+  console.log("Inside authenticate token. COOKIES: ", req.cookies.token)
+  try{
+    jwt.verify(req.cookies.token, "09f26e402586e2faa8da4c98a35f1b20d6b033c60")
+  } catch(e) {
+    console.log("Error in Authenticate Token: ", e)
+    next(e)
+  }
 
   console.log("Done authenticating token");
 

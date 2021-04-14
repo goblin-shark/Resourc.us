@@ -41,12 +41,18 @@ export const isLogin = () => {
     }
   })
     .then(rsp => rsp.json())
-    .catch(() => alert("Error validating user"))
+    .then(data => {
+      return true
+    })
+    .catch(() => {
+      alert("Error validating user")
+      return false;
+    })
 
   //console.log("document.cookie: ", document.cookie)
 
-  if (localStorage.getItem(TOKEN_KEY)) {
-    return true;
-  }
-  return false;
+  // if (localStorage.getItem(TOKEN_KEY)) {
+  //   return true;
+  // }
+  // return false;
 }
