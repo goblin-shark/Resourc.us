@@ -27,8 +27,15 @@ const App = () => {
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
+  const [_resourceInitalLoad, setResourceInitial] = useState([]);
+  const [initialLoad, setInitialLoadStatus] = useState(false)
 
-
+const loadIntialResources = (data) => {
+  if(!initialLoad) {
+    setResourceInitial(data)
+    setInitialLoadStatus(true);
+}
+}
   useLayoutEffect(() => {
 		if (location === '/teams' | '/searchResults') {
       setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
@@ -53,17 +60,19 @@ const App = () => {
               <li><Link to='/signup'>Signup</Link></li>
             </ul>
           </header>
-          { showResults && <Redirect to={{ pathname: '/searchResults',  state: { search: results }}}/>}
+          { showResults && <Redirect to={{ pathname: '/search',  state: { search: results, resources: _resourceInitalLoad }}}/>}
           <Switch>
-            <PublicRoute restricted={false} component={Home} path="/" exact />
+            <PublicRoute restricted={false} component= {props => 
+              (<Home {...props} loadInitial={loadIntialResources}/>)
+            }  path="/" exact />
             <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
             <Route path="/teams" exact component={Teams}></Route>
             <PrivateRoute component={CreateResource} path="/CreateResource" exact />
             <PrivateRoute component={CreateTeam} path="/CreateTeam" exact />
             <Route path="/signup">{<SignupPage />}</Route>
             <Route path="/login">{<LoginPage />}</Route>
-            <Route path="/ResourceCard">{<ResourceCard />}</Route>
-            <Route path="/searchResults" exact component= {SearchNav}></Route>
+            <Route path="/ResourceCard">{ResourceCard}</Route>
+            <Route path="/search" exact component= {SearchNav}></Route>
           </Switch>
         </div>
       </div>
