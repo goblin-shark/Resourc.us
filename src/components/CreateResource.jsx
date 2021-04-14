@@ -175,8 +175,8 @@ const createResource = () => {
           ></input>
         </div>
         <div className="form-group">
-          <select className="form-control form-select" onChange={selectTeam}>
-            <option value="" selected>Which team?</option>
+          <select className="form-control form-select" onChange={selectTeam} defaultValue="default">
+            <option value="default">Which team?</option>
             {_teams.map((team, idx) => (
               <option key={'team'+idx} value={team._id}>{team.name}</option>
             ))}
