@@ -21,4 +21,12 @@ router.post('/create',
     }
 );
 
+router.post('/authenticate',
+    authController.authenticateToken,
+    (req, res) => {
+        console.log('user.js: User is validated');
+        res.status(200).json({});
+    }
+);
+
 module.exports = router;

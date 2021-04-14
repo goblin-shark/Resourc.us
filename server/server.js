@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const db = require('./models/db');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser')
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const searchDatabase = require('./routes/search')
 
 const PORT = 3000;
 
+app.use(cookieParser());
 app.use(cors())
 
 // HANDLE ASSETS

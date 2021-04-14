@@ -22,9 +22,11 @@ export const LoginForm = () => {
       },
       body: JSON.stringify(values)
     })
+      .then(rsp => rsp.json())
       .then(data => {
         // Enter something that stores or handles cookies or JWT
         alert("Login Success!")
+        document.cookie = `token=${data}`
         history.push("/");
         login();
       })
