@@ -6,7 +6,7 @@ const teamSchema = new Schema({
     name: { type: String, required: true, unique: true },
     category: { type: String, required: true },
     description: { type: String },
-    userCount: { type: Number , default : 0},
+    userList: { type: Array },
     resourceCount: { type: Number , default : 0},
 }, { timestamps: true });
 

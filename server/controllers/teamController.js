@@ -6,7 +6,7 @@ teamController.createTeam = (req, res, next) => {
 
     Team.create({
         image: requestBody.image,
-        name: requestBody.name,  //req.body.team.name
+        name: requestBody.name,
         category: requestBody.category,
         description: requestBody.description
     })
@@ -46,9 +46,12 @@ teamController.listTeams = (req, res, next) => {
 
 teamController.increaseUserCount = (req, res, next) => {
     console.log("increase user count: ", res.locals.response)
+    console.log("increase user count: ", req.body)
+    const newUserList = res.locals.response.userList
+    newUserList.push(req.body.user._id);
     Team.findOneAndUpdate({ _id : res.locals.response._id },
     {
-        userCount : res.locals.response.userCount + 1,
+        userList : newUserList,
     })
         .then(data => {
             res.locals.response = data;
