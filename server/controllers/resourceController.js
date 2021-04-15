@@ -91,15 +91,59 @@ resourceController.listAllResources = (req, res, next) => {
     });
 }
 
-resourceController.upvoteResource = (req, res, next) => {
+resourceController.findOne = (req, res, next) => {
+  const requestBody = req.body;
+
+  Resource.findOne({
+    _id: requestBody._id,
+  })
+    .then(data => {
+      res.locals.response = data;
+      console.log('resourceController.findOne:', 'findOne found')
+      next();
+    })
+    .catch(err => {
+      next({
+        log: `findOne - ERROR: ${err}`,
+        message: {
+          err: 'Error occured in resourceController.findOne',
+          message: err
+        }
+      })
+    });
+}
+
+resourceController.updateUserUpvoteList = (req, res, next) => {
   const requestBody = req.body;
   const numVotes = requestBody.upvote ? 1 : -1;
 
+  console.log('res.locals.response', res.locals.response);
+  console.log('user._id: ', requestBody.user.user._id);
+
+  if (numVotes === 1 && (res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
+    console.log("User Already upvoted this resource")
+    next();
+    return;
+  }
+
+  if (numVotes === -1 && (!res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
+    console.log("User Already downvoted this resource")
+    next();
+    return;
+  }
+
+  let newUserUpvoteList = res.locals.response.userUpvoteList;
+  if (numVotes === 1) {
+    newUserUpvoteList.push(requestBody.user.user._id)
+  }
+  else {
+    newUserUpvoteList = newUserUpvoteList.filter((el) => requestBody.user.user._id != el)
+  }
+
   Resource.findOneAndUpdate({
-    // link: requestBody.link,
-    // teamId: requestBody._id,
     _id: requestBody._id,
   }, {
+    userUpvoteList: newUserUpvoteList,
     votes: requestBody.votes + numVotes,
   },
     {

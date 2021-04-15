@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const ResourceCard = ({ teamId }) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
+  const { user } = useContext(UserContext);
 
   // VARIABLES FOR FETCH
   let url = "http://localhost:3000/resource/list";
@@ -50,6 +52,7 @@ const ResourceCard = ({ teamId }) => {
       _id: id,
       votes: votes,
       upvote: true,
+      user: user,
     };
 
     // POST the payload to database
@@ -89,6 +92,7 @@ const ResourceCard = ({ teamId }) => {
       _id: id,
       votes: votes,
       upvote: false,
+      user: user,
     };
 
     // POST the payload to database

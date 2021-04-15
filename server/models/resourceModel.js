@@ -9,7 +9,8 @@ const resourceSchema = new Schema({
   description: { type: String },
   votes: { type: Number, default: 0 },
   category: { type: String, required: true },
-  tags: { type: [String], default: [] }
+  tags: { type: [String], default: [] },
+  userUpvoteList: { type: [String], default: [] }
 }, { timestamps: true });
 
 var Resource = mongoose.model('Resource', resourceSchema);

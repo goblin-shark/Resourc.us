@@ -36,7 +36,8 @@ router.get('/listAll',
 );
 
 router.post('/upvote',
-  resourceController.upvoteResource,
+  resourceController.findOne,
+  resourceController.updateUserUpvoteList,
   (req, res) => {
     console.log('upvote resource router is working');
     res.status(200).json(res.locals.response);
