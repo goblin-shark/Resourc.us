@@ -45,7 +45,7 @@ teamController.listTeams = (req, res, next) => {
 }
 
 teamController.addUserToTeam = (req, res, next) => {
-    if(res.locals.response.userList.includes(req.body.user._id)) {
+    if(res.locals.response.userList.includes(req.body.user._id) || req.body.user._id === undefined) {
         console.log("User already in this team")
         next({
             log: `List Teams - ERROR: ${err}`,

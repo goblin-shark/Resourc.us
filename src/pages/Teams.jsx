@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Route } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
+import { useHistory } from 'react-router-dom';
+
 
 const Teams = () => {
   const [_teams, setTeams] = useState([]);
   const { user } = useContext(UserContext)
+  const history = useHistory()
 
   useEffect(() => {
 
@@ -36,9 +39,9 @@ const Teams = () => {
     return Math.floor(Math.random() * colors.length);
   }
 
-  const joinTeam = (e, teamId) => {
-    e.preventDefault();
-    fetch("http://localhost:3000/teams/join", {
+  const joinTeam = async (e, teamId) => {
+    //e.preventDefault();
+    await fetch("http://localhost:3000/teams/join", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +55,8 @@ const Teams = () => {
     .then(data => {
       console.log("JOIN TEAM SUCCESS")
     }).catch(err => {
-      console.log('JOIN TEAM FAILED: ', err);
+      alert('JOIN TEAM FAILED: ', err);
+      history.goBack();
     })
   }
 
@@ -68,7 +72,7 @@ const Teams = () => {
           <section>
             <div className="meta">
               <div>{team.category}</div>
-              <div><i className='bx bx-merge'></i> 342</div>
+              <div><i className='bx bx-merge'></i>{team.userList.length}</div>
               <div><i className='bx bxs-user-account'></i> 24</div>
             </div>
             <article>
@@ -76,7 +80,7 @@ const Teams = () => {
             </article>
             <div className="actions">
               <div>
-                <Link className="btn btn-default" to="/#" onClick={(e) => joinTeam(e, team._id)}>Join</Link>
+                <Link className="btn btn-default" to={"/teams/" + team._id} onClick={(e) => joinTeam(e, team._id)}>Join</Link>
                 {/* <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")} team={team}>View</Link> */}
                 <Link className="btn btn-primary" to={"/teams/" + team._id}>View</Link>
               </div>
