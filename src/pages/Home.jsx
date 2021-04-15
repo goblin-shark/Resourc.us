@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ResourceCard from "./../components/ResourceCard"
+import ResourceCard from "./../components/ResourceCard";
 
 function HomePage() {
   // State for our three teams
@@ -67,7 +67,6 @@ function HomePage() {
     <div className="container">
       <h1>Home Page</h1>
       <ResourceCard teamId="allTeams"></ResourceCard>
-
     </div>
   );
 }

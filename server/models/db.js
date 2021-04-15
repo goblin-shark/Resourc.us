@@ -14,18 +14,18 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 mongoose.connect(url, {
-    // options for the connect method to parse the URI
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: MONGO_DB
+  // options for the connect method to parse the URI
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: MONGO_DB
 })
-    .then(() => console.log('Connected to Resourcus DB.'))
-    .catch(err => console.log(err));
+  .then(() => console.log('Connected to Resourcus DB.'))
+  .catch(err => console.log(err));
 
 module.exports = {
-    MONGO_USERNAME,
-    MONGO_PASSWORD,
-    MONGO_HOSTNAME,
-    MONGO_DB,
-    url
+  MONGO_USERNAME,
+  MONGO_PASSWORD,
+  MONGO_HOSTNAME,
+  MONGO_DB,
+  url
 }

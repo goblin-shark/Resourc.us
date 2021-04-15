@@ -45,12 +45,12 @@ const config = {
     alias: {
       // react: path.resolve('./node_modules/react'),
       "react-dom": "@hot-loader/react-dom",
-      
+
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, "./src/index.html"),
+      template: path.resolve(__dirname, "./src/index.html"),
     })
   ],
   devServer: {

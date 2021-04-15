@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, Route } from 'react-router-dom';
 const FilteredResults = (props) => {
 
-const searchResults = props.location.state.search;
-console.log('results', props.location.state.search)
+  const searchResults = props.location.state.search;
 
   const colors = [
     ['#ff4b1f', '#ff9068'],

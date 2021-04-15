@@ -1,54 +1,54 @@
 .outerContainer {
-    display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    width: 100vw;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  width: 100vw;
 }
 
 .innerContainer {
-    display: grid;
-    width: 100%;
-    grid-template-rows: 80px minmax(0, 1fr);
-    grid-template-columns: auto;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 80px minmax(0, 1fr);
+  grid-template-columns: auto;
 }
 
 .cardContainer {
-	position: relative;
-	display: grid;
-    width: auto;
-    max-width: none;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	grid-template-rows: fit-content(40%);
-	column-gap: 24px;
-	row-gap: 24px;
-	margin: 0 1.5rem 6rem;
-	& + footer {
-		position: relative; 
-		height: 5rem;
-	}
+  position: relative;
+  display: grid;
+  width: auto;
+  max-width: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: fit-content(40%);
+  column-gap: 24px;
+  row-gap: 24px;
+  margin: 0 1.5rem 6rem;
+  & + footer {
+    position: relative;
+    height: 5rem;
+  }
 }
 
 .formContainer {
-    max-width: 375px;
+  max-width: 375px;
 }
 
 .teamContainer {
-    max-width: 880px;
+  max-width: 880px;
 }
 
 @media screen and (max-width: 1300px) {
-    .cardContainer {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .cardContainer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 980px) {
-    .cardContainer {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .cardContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 575px) {
-    .cardContainer {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
+  .cardContainer {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 }

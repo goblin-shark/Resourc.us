@@ -1,91 +1,90 @@
 .resourceCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin: 1rem 0;
+  .resourcePreview {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
-    margin: 1rem 0;
-    .resourcePreview {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+  }
+  .metaContainer {
+    margin-left: 24px;
+    .tags {
+      position: relative;
+      z-index: 2;
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 0.75em;
+      .tag {
+        margin-right: 0.5rem;
+      }
     }
-    .metaContainer {
-        margin-left: 24px;
-        .tags {
-            position: relative;
-            z-index: 2;
-            background-color: transparent;
-            box-shadow: none;
-            font-size: 0.75em;
-            .tag {
-                margin-right: 0.5rem;
-            }
-        }
+  }
+  h3 {
+    width: 550px;
+    font-weight: 600;
+    max-width: 100%;
+  }
+  .imageContainer {
+    width: 120px;
+    height: 80px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
-    h3 {
-        width: 550px;
-        font-weight: 600;
-        max-width: 100%;
+  }
+  a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .votes {
+    position: absolute;
+    right: 0;
+    padding: 0.25rem 1rem;
+    border-radius: 4px;
+    & > div {
+      display: inline;
+      float: left;
     }
-    .imageContainer {
-        width: 120px;
-        height: 80px;
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+    .voteCount {
+      font-size: 1.05em;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+      width: auto;
     }
-    a {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+    .actions {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      button {
+        color: #7e8893;
+        &:hover {
+          .bxs-up-arrow {
+            color: #009b0a;
+          }
+          .bxs-down-arrow {
+            color: #ff0a0a;
+          }
+        }
+      }
     }
-    .votes {
-        position: absolute;
-        right:0;
-        padding: 0.25rem 1rem;
-        border-radius: 4px;
-        & > div {
-            display: inline;
-            float: left;
-        }
-        .voteCount {
-            font-size: 1.05em;
-            font-weight: 700;
-            text-align: center;
-            display: block;
-            width: auto;
-        }
-        .actions {
-            display: flex;
-            flex-direction: column;
-            height: auto;
-            button {
-                color: #7e8893;
-                &:hover {
-                    .bxs-up-arrow {
-                        color: #009b0a;
-                    }
-                    .bxs-down-arrow {
-                        color: #ff0a0a;
-                    }
-                }
-                
-            }
-        }
-        span {
-            text-align: center;
-            display: block;
-            width: 16px;
-        }
+    span {
+      text-align: center;
+      display: block;
+      width: 16px;
     }
+  }
 }
 .resourceCard:hover {
-    h3 {
-        color: #0a7bff;
-    }
+  h3 {
+    color: #0a7bff;
+  }
 }

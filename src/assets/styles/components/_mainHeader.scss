@@ -1,26 +1,26 @@
 .mainHeader {
-    background-color: #fff;
-    height: 56px;
-    margin-bottom: 24px;
-    box-shadow: 0 0 0.875rem 0 rgba(41, 48, 66, 0.05);
-    padding: 0 1.5rem ;
+  background-color: #fff;
+  height: 56px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 0.875rem 0 rgba(41, 48, 66, 0.05);
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  ul {
+    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    ul {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        width: 100%;
-        li {
-            margin-left: 1rem;
-        }
-        .primary-action {
-            position: absolute;
-            left: 0;
-        }
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    li {
+      margin-left: 1rem;
     }
+    .primary-action {
+      position: absolute;
+      left: 0;
+    }
+  }
 }

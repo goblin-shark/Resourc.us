@@ -23,29 +23,29 @@ router.get('/', async (request, response) => {
         "$search": {
           "index": "ind1",
           "autocomplete": {
-              "query": `${request.query.query}`,
-              "path": "description",
-              "fuzzy": {
-                  "maxEdits": 2,
-                  "prefixLength": 3
-              }
+            "query": `${request.query.query}`,
+            "path": "description",
+            "fuzzy": {
+              "maxEdits": 2,
+              "prefixLength": 3
+            }
           }
+        }
       }
-      }
-  ]).toArray();
-  console.log('retrieving search queries', result)
-  response.status(200).send(result);
-} catch (e) {
-      response.status(500).send({ message: e.message });
+    ]).toArray();
+    console.log('retrieving search queries', result)
+    response.status(200).send(result);
+  } catch (e) {
+    response.status(500).send({ message: e.message });
   }
 });
 
 router.get("/get/:id", async (request, response) => {
   try {
-      let result = await collection.findOne({ "_id": ObjectID(request.params.id) });
-      response.send(result);
+    let result = await collection.findOne({ "_id": ObjectID(request.params.id) });
+    response.send(result);
   } catch (e) {
-      response.status(500).send({ message: e.message });
+    response.status(500).send({ message: e.message });
   }
 });
 

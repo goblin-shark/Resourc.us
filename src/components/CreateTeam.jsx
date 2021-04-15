@@ -13,7 +13,7 @@ const createTeam = () => {
     const { name, value } = event.target;
     // copies previous state and updates only changed key/values
     setPayload({ ..._payload, [name]: value });
-  }
+  };
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -22,21 +22,21 @@ const createTeam = () => {
     fetch("http://localhost:3000/teams/create", {
       method: "POST",
       headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(_payload)
+      body: JSON.stringify(_payload),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        history.push("/")
-        alert("Create Team Success!")
+        history.push("/");
+        alert("Create Team Success!");
       })
       .catch((err) => {
-        alert("Create Team Failed! Please Try Again!")
+        alert("Create Team Failed! Please Try Again!");
       });
     // ADD RESET STATE HERE AFTER SUMBIT
-  }
+  };
 
   return (
     <div className="container formContainer">
@@ -85,6 +85,6 @@ const createTeam = () => {
       </form>
     </div>
   );
-}
+};
 
 export default createTeam;

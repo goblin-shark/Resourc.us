@@ -13,9 +13,5 @@ export const logout = () => {
 //checks to see if there is a valid token key in users local storage
 export const isLogin = () => {
   //if (localStorage.getItem(TOKEN_KEY)) {
-  if(document.cookie){
-    console.log("I HAS COOKIE")
-    return true;
-  }
-  return false;
+  return document.cookie ? true : false;
 }

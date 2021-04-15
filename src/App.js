@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect, useContext} from "react";
+import React, { useState, useLayoutEffect, useEffect, useContext } from "react";
 
 // import router
 import { Route, Link, useLocation, BrowserRouter, Switch, Redirect } from "react-router-dom";
@@ -31,7 +31,7 @@ const App = () => {
   const { user, logout } = useContext(UserContext)
 
   useLayoutEffect(() => {
-		if (location === '/teams' | '/searchResults') {
+    if (location === '/teams' | '/searchResults') {
       setButton(<Link to='/CreateTeam' className="btn btn-success">Create Team</Link>);
     } else if (location === '/CreateTeam' || location === '/CreateResource' || location === '/login' || location === '/signup') {
       setButton('');
@@ -48,13 +48,13 @@ const App = () => {
           <header className="mainHeader">
             <ul>
               <li className="primary-action">{button}</li>
-              <Search setShowResults= {setShowResults} setSearchData = {setSearchData}/>
+              <Search setShowResults={setShowResults} setSearchData={setSearchData} />
               {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {user.user.firstname} </li>}
               {!isLogin() ? null : <li><button onClick={logout}>Logout</button></li>}
               {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>
-          { showResults && <Redirect to={{ pathname: '/searchResults',  state: { search: results }}}/>}
+          {showResults && <Redirect to={{ pathname: '/searchResults', state: { search: results } }} />}
           <Switch>
             <PublicRoute restricted={false} component={Home} path="/" exact />
             <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
@@ -65,7 +65,7 @@ const App = () => {
             <Route path="/signup">{<SignupPage />}</Route>
             <Route path="/login">{<LoginPage />}</Route>
             <Route path="/ResourceCard">{<ResourceCard />}</Route>
-            <Route path="/searchResults" exact component= {FilteredResults}></Route>
+            <Route path="/searchResults" exact component={FilteredResults}></Route>
           </Switch>
         </div>
       </div>

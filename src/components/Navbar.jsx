@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // bootstrap components
 import Button from "react-bootstrap/Button";
@@ -17,11 +17,19 @@ function Navbars() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link to="/"><h1>Resourc.us</h1></Link>
+          <Link to="/">
+            <h1>Resourc.us</h1>
+          </Link>
           <ul>
-            <li><Link to='/teams'>All Teams</Link></li>
-            <li><Link to='/'>All Resources</Link></li>
-            <li><Link to='/myTeams'>My Teams</Link></li>
+            <li>
+              <Link to="/teams">All Teams</Link>
+            </li>
+            <li>
+              <Link to="/">All Resources</Link>
+            </li>
+            <li>
+              <Link to="/myTeams">My Teams</Link>
+            </li>
             {/* <li><Link to='/CreateResource'>Create Resource</Link></li> */}
           </ul>
         </Nav>
