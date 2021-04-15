@@ -24,13 +24,12 @@ const UserProvider = ({ children }) => {
         console.log("Data: ", data);
         document.cookie = `token=${data.token}`
         //localStorage.username = data.name;
-        history.push("/");
         console.log("Data.user: ", data.user)
         setUser({
           user: data.user,
         });
         alert("Login Success!")
-        console.log()
+        history.goBack();
       })
       .catch(err => {
         console.log("Login Failed! error: ", err)
