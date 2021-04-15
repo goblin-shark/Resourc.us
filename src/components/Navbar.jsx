@@ -21,6 +21,7 @@ function Navbars() {
           <ul>
             <li><Link to='/teams'>All Teams</Link></li>
             <li><Link to='/'>All Resources</Link></li>
+            <li><Link to='/myTeams'>My Teams</Link></li>
             {/* <li><Link to='/CreateResource'>Create Resource</Link></li> */}
           </ul>
         </Nav>

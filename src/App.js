@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup"
 import Teams from "./pages/Teams";
+import MyTeams from "./pages/MyTeams";
 import TeamDetailPage from "./components/TeamDetailPage"
 
 // import components
@@ -58,6 +59,7 @@ const App = () => {
             <PublicRoute restricted={false} component={Home} path="/" exact />
             <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
             <Route path="/teams" exact component={Teams}></Route>
+            <Route path="/myTeams" exact component={MyTeams}></Route>
             <PrivateRoute component={CreateResource} path="/CreateResource" exact />
             <PrivateRoute component={CreateTeam} path="/CreateTeam" exact />
             <Route path="/signup">{<SignupPage />}</Route>

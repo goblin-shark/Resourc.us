@@ -19,20 +19,15 @@ const UserProvider = ({ children }) => {
     })
       .then(rsp => rsp.json())
       .then(data => {
-        // Enter something that stores or handles cookies or JWT
-        
-        console.log("Data: ", data);
         document.cookie = `token=${data.token}`
-        //localStorage.username = data.name;
-        console.log("Data.user: ", data.user)
         setUser({
           user: data.user,
         });
-        alert("Login Success!")
+        //alert("Login Success!")
         history.goBack();
       })
       .catch(err => {
-        console.log("Login Failed! error: ", err)
+        alert("Login Failed!")
       });
     };
   
