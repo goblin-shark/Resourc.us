@@ -44,9 +44,18 @@ teamController.listTeams = (req, res, next) => {
         });
 }
 
-teamController.increaseUserCount = (req, res, next) => {
-    console.log("increase user count: ", res.locals.response)
-    console.log("increase user count: ", req.body)
+teamController.addUserToTeam = (req, res, next) => {
+    if(res.locals.response.userList.includes(req.body.user._id)) {
+        console.log("User already in this team")
+        next({
+            log: `List Teams - ERROR: ${err}`,
+            message: {
+                err: 'Error occured in teamController.findTeam',
+                message: err
+            }
+        })
+    }
+
     const newUserList = res.locals.response.userList
     newUserList.push(req.body.user._id);
     Team.findOneAndUpdate({ _id : res.locals.response._id },

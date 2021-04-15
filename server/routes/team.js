@@ -37,7 +37,7 @@ router.post('/create',
 
 router.post('/join',
     teamController.findTeam,
-    teamController.increaseUserCount,
+    teamController.addUserToTeam,
     (req, res) => {
         console.log('join team router is working');
         //console.log(res.locals.response);
