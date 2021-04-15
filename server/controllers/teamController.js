@@ -44,11 +44,33 @@ teamController.listTeams = (req, res, next) => {
         });
 }
 
-teamController.findTeam = (req, res, next) => {
-    Team.findOne({ "_id": req.params.id })
+teamController.increaseUserCount = (req, res, next) => {
+    console.log("increase user count: ", res.locals.response)
+    Team.findOneAndUpdate({ _id : res.locals.response._id },
+    {
+        userCount : res.locals.response.userCount + 1,
+    })
         .then(data => {
             res.locals.response = data;
             console.log('teamController.listTeams:', 'team found')
+            next();
+        })
+        .catch(err => {
+            next({
+                log: `List Teams - ERROR: ${err}`,
+                message: {
+                    err: 'Error occured in teamController.findTeam',
+                    message: err
+                }
+            })
+        });
+}
+
+teamController.findTeam = (req, res, next) => {
+    Team.findOne({ _id : req.body.teamId })
+        .then(data => {
+            res.locals.response = data;
+            console.log('teamController.listTeams:', 'team found: ', res.locals.response)
             next();
         })
         .catch(err => {

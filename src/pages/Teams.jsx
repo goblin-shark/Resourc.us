@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, Route } from 'react-router-dom';
+import { UserContext } from '../components/UserContext';
 
-
-function Teams() {
+const Teams = () => {
   const [_teams, setTeams] = useState([]);
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
 
@@ -35,6 +36,26 @@ function Teams() {
     return Math.floor(Math.random() * colors.length);
   }
 
+  const joinTeam = (e, teamId) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/teams/join", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        teamId : teamId,
+        user: user.user
+      })
+    })
+    .then(rsp => rsp.json())
+    .then(data => {
+      console.log("JOIN TEAM SUCCESS")
+    }).catch(err => {
+      console.log('JOIN TEAM FAILED: ', err);
+    })
+  }
+
   return (
     <div className="cardContainer">
       {_teams.map(team =>
@@ -55,7 +76,7 @@ function Teams() {
             </article>
             <div className="actions">
               <div>
-                <Link className="btn btn-default" to="/#">Join</Link>
+                <Link className="btn btn-default" to="/#" onClick={(e) => joinTeam(e, team._id)}>Join</Link>
                 {/* <Link className="btn btn-primary" to={"/teams/" + team.name.toLowerCase().trim().replace(/\s/g, "-")} team={team}>View</Link> */}
                 <Link className="btn btn-primary" to={"/teams/" + team._id}>View</Link>
               </div>

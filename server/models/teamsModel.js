@@ -6,8 +6,8 @@ const teamSchema = new Schema({
     name: { type: String, required: true, unique: true },
     category: { type: String, required: true },
     description: { type: String },
-    userCount: { type: Number },
-    resourceCount: { type: Number },
+    userCount: { type: Number , default : 0},
+    resourceCount: { type: Number , default : 0},
 }, { timestamps: true });
 
 var Team = mongoose.model('Team', teamSchema);
