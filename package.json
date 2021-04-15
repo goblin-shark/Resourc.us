@@ -11,7 +11,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "start": "webpack serve --hot --host localhost --port 3000 --mode development",
+    "start": "webpack serve --hot --mode development",
     "server": "nodemon server/server.js",
     "restart": "npm run build-dev && npm run server"
   },

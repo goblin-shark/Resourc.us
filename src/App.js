@@ -37,7 +37,7 @@ const App = () => {
     } else {
       setButton(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
     }
-  }, [location]);
+  }, [location, user]);
 
   return (
     <BrowserRouter>
