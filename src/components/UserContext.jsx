@@ -1,10 +1,11 @@
 import React, { useState, useLayoutEffect, useEffect} from "react";
+import { useHistory } from 'react-router-dom';
 export const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
     // User is the name of the "data" that gets stored in context
-    const [user, setUser] = useState({ name: '' });
-  
+    const [user, setUser] = useState({ user: {} });
+    const history = useHistory()
     // Login updates the user data with a name parameter
     const userlogin = async (e, values) => {
       e.preventDefault()
@@ -19,27 +20,30 @@ const UserProvider = ({ children }) => {
       .then(rsp => rsp.json())
       .then(data => {
         // Enter something that stores or handles cookies or JWT
-        alert("Login Success!")
+        
         console.log("Data: ", data);
         document.cookie = `token=${data.token}`
-        localStorage.username = data.name;
+        //localStorage.username = data.name;
         history.push("/");
-        setUser((user) => ({
-          name: "Eric",
-        }));
+        console.log("Data.user: ", data.user)
+        setUser({
+          user: data.user,
+        });
+        alert("Login Success!")
+        console.log()
       })
       .catch(err => {
         console.log("Login Failed! error: ", err)
-        while(1);
       });
     };
   
     // Logout updates the user data to default
     const logout = () => {
-      setUser((user) => ({
-        name: '',
-        auth: false,
-      }));
+      console.log("logout")
+      document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+      setUser({
+        user: {}
+      })
     };
   
     return (

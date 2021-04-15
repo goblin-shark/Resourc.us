@@ -9,7 +9,7 @@ router.post('/login',
     (req, res) => {
         console.log('login User router is working');
         res.status(200).json({ token: res.locals.token, 
-                                name: res.locals.firstname});
+                                user: res.locals.user});
     }
 );
 

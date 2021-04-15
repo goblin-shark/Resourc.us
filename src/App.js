@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect} from "react";
+import React, { useState, useLayoutEffect, useEffect, useContext} from "react";
 
 // import router
 import { Route, Link, useLocation, BrowserRouter, Switch, Redirect } from "react-router-dom";
@@ -20,13 +20,14 @@ import FilteredResults from "./components/FilteredResults";
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { isLogin } from './components/utility';
+import { UserContext } from './components/UserContext';
 
 const App = () => {
   const location = useLocation().pathname;
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
-  // const [user, setUser] = asdf
+  const { user, logout } = useContext(UserContext)
 
   useLayoutEffect(() => {
 		if (location === '/teams' | '/searchResults') {
@@ -47,7 +48,8 @@ const App = () => {
             <ul>
               <li className="primary-action">{button}</li>
               <Search setShowResults= {setShowResults} setSearchData = {setSearchData}/>
-              {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {localStorage.username} </li>}
+              {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {user.user.firstname} </li>}
+              {!isLogin() ? null : <li><button onClick={logout}>Logout</button></li>}
               {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>
