@@ -50,7 +50,7 @@ const App = () => {
               <li className="primary-action">{button}</li>
               <Search setShowResults={setShowResults} setSearchData={setSearchData} />
               {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {user.user.firstname} </li>}
-              {!isLogin() ? null : <li><button onClick={logout}>Logout</button></li>}
+              {!isLogin() ? null : <li><Link to='/' className="btn btn-secondary" onClick={logout}>Logout</Link></li>}
               {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>

@@ -15,14 +15,13 @@ const MyTeams = () => {
       })
       .then((data) => {
         //filter out teams whose user list does not contain current user id
-        console.log("Team data: ", data);
         const filteredData = data.filter((el, i, idx) => {
           return el.userList.includes(user.user._id);
         });
         setTeams(filteredData);
       })
       .catch((err) => {
-        console.log("GET FAILED", err);
+        console.log("List My Teams Failed", err);
       });
   }, []);
 

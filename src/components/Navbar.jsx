@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { isLogin } from "./utility";
 
 import { Link } from "react-router-dom";
 
@@ -27,9 +28,12 @@ function Navbars() {
             <li>
               <Link to="/">All Resources</Link>
             </li>
-            <li>
-              <Link to="/myTeams">My Teams</Link>
-            </li>
+
+            {isLogin() ? (
+              <li>
+                <Link to="/myTeams">My Teams</Link>
+              </li>
+            ) : null}
             {/* <li><Link to='/CreateResource'>Create Resource</Link></li> */}
           </ul>
         </Nav>
