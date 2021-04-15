@@ -75,8 +75,7 @@ const createResource = () => {
 
     await fetch("http://localhost:3000/user/authenticate", {
       method: 'POST',
-      //mode: 'no-cors',
-      credentials: 'include',
+      credentials: 'include'
     })
       .then(rsp => rsp.json())
       .then(data => {

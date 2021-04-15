@@ -21,12 +21,12 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { isLogin } from './components/utility';
 
-
 const App = () => {
   const location = useLocation().pathname;
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
+  // const [user, setUser] = asdf
 
   useLayoutEffect(() => {
 		if (location === '/teams' | '/searchResults') {
@@ -37,7 +37,6 @@ const App = () => {
       setButton(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
     }
   }, [location]);
-
 
   return (
     <BrowserRouter>

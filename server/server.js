@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions))
 
+
 // ROUTES
 app.use('/user', userRouter);
 app.use('/teams', teamRouter);

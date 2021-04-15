@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { login , setUser} from '../utility';
+import { login } from '../utility';
 
 export const LoginForm = () => {
   const [values, setValues] = useState({

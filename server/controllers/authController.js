@@ -27,7 +27,7 @@ authController.authenticateToken = (req, res, next) => {
   console.log("Inside authenticate token. COOKIES: ", req.cookies.token)
   console.log("Inside authenticate token. COOKIES: ", req.headers)
   try{
-    jwt.verify(req.cookies.token, "09f26e402586e2faa8da4c98a35f1b20d6b033c60")
+    jwt.verify(req.cookies.token.toString(), "09f26e402586e2faa8da4c98a35f1b20d6b033c60")
   } catch(e) {
     console.log("Error in Authenticate Token: ", e)
     next(e)
