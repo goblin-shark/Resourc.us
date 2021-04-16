@@ -60,7 +60,7 @@ const createResource = () => {
         });
       })
       .catch((err) => {
-        alert("URL Scrape Failed");
+        console.log("URL Scrape Failed");
       });
   };
 

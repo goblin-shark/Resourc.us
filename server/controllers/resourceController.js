@@ -121,13 +121,13 @@ resourceController.updateUserUpvoteList = (req, res, next) => {
   console.log('user._id: ', requestBody.user.user._id);
 
   if (numVotes === 1 && (res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
-    console.log("User Already upvoted this resource")
+    //console.log("User Already upvoted this resource")
     next();
     return;
   }
 
   if (numVotes === -1 && (!res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
-    console.log("User Already downvoted this resource")
+    //console.log("User Already downvoted this resource")
     next();
     return;
   }

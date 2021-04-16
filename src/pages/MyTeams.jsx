@@ -86,10 +86,10 @@ const MyTeams = () => {
               <div>{team.category}</div>
               <div>
                 <i className="bx bx-merge"></i>
-                {team.userList.length}
+                256
               </div>
               <div>
-                <i className="bx bxs-user-account"></i> 24
+                <i className="bx bxs-user-account"></i> {team.userList.length}
               </div>
             </div>
             <article>
