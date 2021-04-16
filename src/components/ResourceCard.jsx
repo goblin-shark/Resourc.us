@@ -47,7 +47,7 @@ const ResourceCard = (props) => {
           props.loadInitial(data);
         })
         .catch((err) => {
-          alert(err);
+          //alert(err);
         });
     }, [count]);
   }

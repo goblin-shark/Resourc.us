@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ResourceCard from "./../components/ResourceCard";
+import ResourceCard from "../components/ResourceCard";
 
 const HomePage = (props) => {
   const [_teams, setTeams] = useState([]);

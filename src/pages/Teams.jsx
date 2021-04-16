@@ -5,16 +5,14 @@ import { useHistory } from "react-router-dom";
 
 const Teams = (props) => {
   const [_teams, setTeams] = useState([]);
-  const { user } = useContext(UserContext);
+  const { user, userIsLoggedIn } = useContext(UserContext);
   const history = useHistory();
 
   useEffect(() => {
-    console.log("Team props: ", props);
     if (props.teams) {
-      console.log("setting teams: ", props.teams);
       setTeams(props.teams);
     }
-  }, [props]);
+  }, []);
 
   useEffect(async () => {
     await fetch("http://localhost:3000/teams/list")
@@ -49,6 +47,15 @@ const Teams = (props) => {
 
   const joinTeam = async (e, teamId) => {
     //e.preventDefault();
+    if (!userIsLoggedIn()) {
+      // TODO: need to redirect to login instead.
+      // Using this ghetto workaround until then.
+      alert("You must be logged in to join a team!");
+      history.push("/");
+      history.goBack();
+      return;
+    }
+
     await fetch("http://localhost:3000/teams/join", {
       method: "POST",
       headers: {
@@ -64,7 +71,7 @@ const Teams = (props) => {
         // Don't do anything with the data yet.
       })
       .catch((err) => {
-        alert("JOIN TEAM FAILED: ", err);
+        alert("You have already joined this team!", err);
         history.goBack();
       });
   };

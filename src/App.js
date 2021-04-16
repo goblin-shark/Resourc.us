@@ -27,7 +27,7 @@ const App = () => {
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
-  const { user, userLogout, userLogin, userIsLoggedIn } = useContext(UserContext)
+  const { user, userLogout, userIsLoggedIn } = useContext(UserContext)
   const [_resourceInitalLoad, setResourceInitial] = useState([]);
   const [initialLoad, setInitialLoadStatus] = useState(false)
 
@@ -37,11 +37,6 @@ const App = () => {
       setInitialLoadStatus(true);
     }
   }
-
-  useEffect(() => {
-    console.log("results: ", results)
-    console.log("show results: ", showResults)
-  })
 
   useLayoutEffect(() => {
     if (location === '/teams' | '/searchResults') {
