@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ResourceCard from "./../components/ResourceCard"
 
+
 function HomePage(props) {
   const [_teams, setTeams] = useState([]);
   const [_resources, setResources] = useState([]);
