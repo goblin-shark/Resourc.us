@@ -86,7 +86,7 @@ const MyTeams = () => {
               <div>{team.category}</div>
               <div>
                 <i className="bx bx-merge"></i>
-                256
+                {team.resourceCount}
               </div>
               <div>
                 <i className="bx bxs-user-account"></i> {team.userList.length}

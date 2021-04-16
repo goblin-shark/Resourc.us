@@ -120,12 +120,14 @@ resourceController.updateUserUpvoteList = (req, res, next) => {
   console.log('res.locals.response', res.locals.response);
   console.log('user._id: ', requestBody.user.user._id);
 
+  // Don't allow the user to upvote if they have already upvoted
   if (numVotes === 1 && (res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
     //console.log("User Already upvoted this resource")
     next();
     return;
   }
 
+  // Don't allow the user to downvote if they have already downvoted (un-upvoted)
   if (numVotes === -1 && (!res.locals.response.userUpvoteList.includes(requestBody.user.user._id) || requestBody.user.user._id === undefined)) {
     //console.log("User Already downvoted this resource")
     next();

@@ -1,9 +1,12 @@
 const express = require('express');
 const resourceController = require('../controllers/resourceController');
+const teamController = require('../controllers/teamController');
 const router = express.Router();
 
 router.post('/create',
   resourceController.createResource,
+  teamController.findTeam,
+  teamController.updateResourceCount,
   (req, res) => {
     console.log('create resource router is working');
     res.status(200).json(res.locals.response);

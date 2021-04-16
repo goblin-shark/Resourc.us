@@ -44,6 +44,27 @@ teamController.listTeams = (req, res, next) => {
     });
 }
 
+teamController.updateResourceCount = (req, res, next) => {
+  Team.findOneAndUpdate({ _id: res.locals.response._id },
+    {
+      resourceCount: res.locals.team.resourceCount + 1,
+    })
+    .then(data => {
+      res.locals.response = data;
+      console.log('teamController.listTeams:', 'team found')
+      next();
+    })
+    .catch(err => {
+      next({
+        log: `List Teams - ERROR: ${err}`,
+        message: {
+          err: 'Error occured in teamController.findTeam',
+          message: err
+        }
+      })
+    });
+}
+
 teamController.addUserToTeam = (req, res, next) => {
   if (res.locals.response.userList.includes(req.body.user._id) || req.body.user._id === undefined) {
     console.log("User already in this team")
@@ -82,6 +103,7 @@ teamController.findTeam = (req, res, next) => {
   Team.findOne({ _id: req.body.teamId })
     .then(data => {
       res.locals.response = data;
+      res.locals.team = data;
       console.log('teamController.listTeams:', 'team found: ', res.locals.response)
       next();
     })
