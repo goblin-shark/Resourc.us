@@ -36,32 +36,6 @@ router.get('/', async (request, response) => {
   ]).toArray();
   responseObj.team = teamResult;
 
-  //functionality to grab tags
-  // collectionTags = client.db(mongoData.MONGO_DB).collection("resources");
-  // let resultTags = await collectionTags.aggregate([
-  //     {
-  //       $unwind: "$tags"
-  //     }
-  //   ]).toArray()
-
-  // function Equals(resourceTag, userQuery){
-  //   resourceTag = resourceTag.toLowerCase()
-  //   userQuery = userQuery.toLowerCase()
-
-  //   if(resourceTag == userQuery) return true;
-  //   return false
-  // }
-
-  
-  // let resourceArray = [];
-  // if(resultTags) {
-  //   for(let resources of resultTags) {
-  //     if(Equals(resources.tags, request.query.query)){
-  //       resourceArray.push(resources)
-  //     }
-  //   }
-  // }
-
   let collectionRes = client.db(mongoData.MONGO_DB).collection("resources");
   let resourcesArr = await collectionRes.aggregate([
     {
@@ -79,7 +53,7 @@ router.get('/', async (request, response) => {
 ]).toArray();
 
 
-  responseObj.tags = resourcesArr;
+  responseObj.resourceSearch = resourcesArr;
   response.status(200).send(responseObj);
 
 } catch (e) {
