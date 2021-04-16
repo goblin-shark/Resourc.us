@@ -7,7 +7,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({ user: {} });
   const history = useHistory();
   // Login updates the user data with a name parameter
-  const userlogin = async (e, values) => {
+  const userLogin = async (e, values) => {
     e.preventDefault();
 
     await fetch("http://localhost:3000/user/login", {
@@ -23,7 +23,7 @@ const UserProvider = ({ children }) => {
         setUser({
           user: data.user,
         });
-        //alert("Login Success!")
+        //alert("Login Success!");
         history.goBack();
       })
       .catch((err) => {
@@ -31,10 +31,10 @@ const UserProvider = ({ children }) => {
       });
   };
 
-  // Logout updates the user data to default
-  const logout = () => {
+  // userLogout updates the user data to default
+  const userLogout = () => {
     // Set the cookie to an expired time to remove it.
-    // TODO: Should still do more thorough logout authentication though...
+    // TODO: Should still do more thorough userLogout authentication though...
     document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 
     // Clear current user
@@ -43,8 +43,15 @@ const UserProvider = ({ children }) => {
     });
   };
 
+  //checks to see if there is a valid token key in users local storage
+  const userIsLoggedIn = () => {
+    return document.cookie ? true : false;
+  };
+
   return (
-    <UserContext.Provider value={{ user, userlogin, logout }}>
+    <UserContext.Provider
+      value={{ user, userLogin, userLogout, userIsLoggedIn }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -7,9 +7,8 @@ const Search = ({ setShowResults, setSearchData }) => {
     setShowResults(true);
   }
 
-  function searchDatabase(e, val) {
-    let textInput = e;
-    let data = fetch(`http://localhost:3000/search?query=${e}`)
+  const searchDatabase = (e) => {
+    fetch(`http://localhost:3000/search?query=${e}`)
       .then(response => response.json())
       .then(data => {
         setSearchData({
@@ -32,9 +31,6 @@ const Search = ({ setShowResults, setSearchData }) => {
       />
     </div>
   )
-
 }
 
-
 export default Search;
-

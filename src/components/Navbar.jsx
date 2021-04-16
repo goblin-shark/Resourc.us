@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { isLogin } from "./utility";
+import { UserContext } from "./UserContext";
 
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,9 @@ import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import FormControl from "react-bootstrap/FormControl";
 
-function Navbars() {
+const Navbars = () => {
+  const { userIsLoggedIn } = useContext(UserContext);
+
   return (
     <Navbar className="sidebar" bg="dark" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,7 +31,7 @@ function Navbars() {
               <Link to="/">All Resources</Link>
             </li>
 
-            {isLogin() ? (
+            {userIsLoggedIn() ? (
               <li>
                 <Link to="/myTeams">My Teams</Link>
               </li>
@@ -44,6 +46,6 @@ function Navbars() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
 
 export default Navbars;

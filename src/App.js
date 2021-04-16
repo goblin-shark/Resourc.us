@@ -19,7 +19,6 @@ import ResourceCard from "./components/ResourceCard"
 import Search from "./components/Search";
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
-import { isLogin } from './components/utility';
 import { UserContext } from './components/UserContext';
 import SearchNav from "./components/SearchNav";
 
@@ -28,7 +27,7 @@ const App = () => {
   const [button, setButton] = useState(<Link to='/CreateResource' className="btn btn-success">Create Resource</Link>);
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
-  const { user, logout } = useContext(UserContext)
+  const { user, userLogout, userLogin, userIsLoggedIn } = useContext(UserContext)
   const [_resourceInitalLoad, setResourceInitial] = useState([]);
   const [initialLoad, setInitialLoadStatus] = useState(false)
 
@@ -63,9 +62,9 @@ const App = () => {
             <ul>
               <li className="primary-action">{button}</li>
               <Search setShowResults={setShowResults} setSearchData={setSearchData} />
-              {!isLogin() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {user.user.firstname} </li>}
-              {!isLogin() ? null : <li><Link to='/' className="btn btn-secondary" onClick={logout}>Logout</Link></li>}
-              {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
+              {!userIsLoggedIn() ? <li><Link to='/login'>Login</Link></li> : <li>Welcome, {user.user.firstname} </li>}
+              {!userIsLoggedIn() ? null : <li><Link to='/' className="btn btn-secondary" onClick={userLogout}>Logout</Link></li>}
+              {!userIsLoggedIn() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>
           {showResults && <Redirect to={{ pathname: '/search', state: { search: results, resources: _resourceInitalLoad } }} />}

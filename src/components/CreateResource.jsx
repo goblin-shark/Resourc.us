@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import InputTags from "react-input-tags-hooks";
 import "react-input-tags-hooks/build/index.css";
 
 const createResource = () => {
   const history = useHistory();
-  // State
   const [_payload, setPayload] = useState({
     title: "",
     link: "",

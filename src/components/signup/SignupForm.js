@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { login } from '../utility';
+import { UserProvider } from '../UserContext';
 
 export const SignupForm = () => {
   const [values, setValues] = useState({
@@ -26,10 +26,9 @@ export const SignupForm = () => {
     })
       .then(resp => resp.json())
       .then(data => {
-        // Enter something that stores or handles cookies or JWT
         alert("Signup Success!")
         history.push("/");
-        login();
+        userLogin();
       })
       .catch(err => {
         alert("Signup Failed!")

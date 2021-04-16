@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../UserContext'
 
 export const LoginForm = () => {
-  const { userlogin } = useContext(UserContext)
+  const { userLogin } = useContext(UserContext)
   const { register } = useForm()
   const [values, setValues] = useState({
     email: '',
@@ -25,7 +25,7 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={(e) => userlogin(e, values)}>
+    <form onSubmit={(e) => userLogin(e, values)}>
       <div className="form-group">
         <input className="form-control" type="email" placeholder="email" name="email" id="email" ref={register} onChange={handleEmail} />
       </div>

@@ -35,7 +35,6 @@ const createTeam = () => {
       .catch((err) => {
         alert("Create Team Failed! Please Try Again!");
       });
-    // ADD RESET STATE HERE AFTER SUMBIT
   };
 
   return (

@@ -20,13 +20,6 @@ export const ResourceForm = () => {
         <label htmlFor="resourceLink">Resource Link</label>
         <input type="resource" name="resource" id="resource" ref={register}></input>
       </div>
-
-      {/* 
-      Maybe use predetermined categories for resources. 
-      <div className="form-group">
-        <label htmlFor="category">Category</label>
-        <input type="category" name="category" id="category" ref={register}></input>
-      </div> */}
     </form>
   )
 }
