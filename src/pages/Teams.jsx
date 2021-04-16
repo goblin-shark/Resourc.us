@@ -3,21 +3,29 @@ import { Link, Route } from "react-router-dom";
 import { UserContext } from "../components/UserContext";
 import { useHistory } from "react-router-dom";
 
-const Teams = () => {
+const Teams = (props) => {
   const [_teams, setTeams] = useState([]);
   const { user } = useContext(UserContext);
   const history = useHistory();
 
   useEffect(() => {
-    fetch("http://localhost:3000/teams/list")
+    console.log("Team props: ", props);
+    if (props.teams) {
+      console.log("setting teams: ", props.teams);
+      setTeams(props.teams);
+    }
+  }, [props]);
+
+  useEffect(async () => {
+    await fetch("http://localhost:3000/teams/list")
       .then((response) => {
         return response.json(); //Parses to JSON
       })
       .then((data) => {
-        setTeams(data);
+        if (!props.teams) setTeams(data);
       })
       .catch((err) => {
-        console.log("List Teams Failed: ", err);
+        console.log("GET FAILED", err);
       });
   }, []);
 
@@ -86,7 +94,7 @@ const Teams = () => {
               </div>
               <div>
                 <i className="bx bxs-user-account"></i>
-                {team.userList.length}
+                {team.userList === undefined ? 0 : team.userList.length}
               </div>
             </div>
             <article>
@@ -115,5 +123,3 @@ const Teams = () => {
 };
 
 export default Teams;
-
-// const teamPageUrl = team.name

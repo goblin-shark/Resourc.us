@@ -14,7 +14,7 @@ import FormControl from "react-bootstrap/FormControl";
 
 function Navbars() {
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar className="sidebar" bg="dark" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">

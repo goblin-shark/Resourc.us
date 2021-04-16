@@ -17,11 +17,11 @@ import CreateTeam from "./components/CreateTeam";
 import CreateResource from "./components/CreateResource";
 import ResourceCard from "./components/ResourceCard"
 import Search from "./components/Search";
-import FilteredResults from "./components/FilteredResults";
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { isLogin } from './components/utility';
 import { UserContext } from './components/UserContext';
+import SearchNav from "./components/SearchNav";
 
 const App = () => {
   const location = useLocation().pathname;
@@ -29,6 +29,20 @@ const App = () => {
   const [showResults, setShowResults] = React.useState(false)
   const [results, setSearchData] = React.useState([])
   const { user, logout } = useContext(UserContext)
+  const [_resourceInitalLoad, setResourceInitial] = useState([]);
+  const [initialLoad, setInitialLoadStatus] = useState(false)
+
+  const loadIntialResources = (data) => {
+    if (!initialLoad) {
+      setResourceInitial(data)
+      setInitialLoadStatus(true);
+    }
+  }
+
+  useEffect(() => {
+    console.log("results: ", results)
+    console.log("show results: ", showResults)
+  })
 
   useLayoutEffect(() => {
     if (location === '/teams' | '/searchResults') {
@@ -54,9 +68,11 @@ const App = () => {
               {!isLogin() ? <li><Link to='/signup'>Signup</Link></li> : <li></li>}
             </ul>
           </header>
-          {showResults && <Redirect to={{ pathname: '/searchResults', state: { search: results } }} />}
+          {showResults && <Redirect to={{ pathname: '/search', state: { search: results, resources: _resourceInitalLoad } }} />}
           <Switch>
-            <PublicRoute restricted={false} component={Home} path="/" exact />
+            <PublicRoute restricted={false} component={props =>
+              (<Home {...props} loadInitial={loadIntialResources} />)
+            } path="/" exact />
             <Route path={"/teams/:id"} component={TeamDetailPage}></Route>
             <Route path="/teams" exact component={Teams}></Route>
             <Route path="/myTeams" exact component={MyTeams}></Route>
@@ -64,12 +80,12 @@ const App = () => {
             <PrivateRoute component={CreateTeam} path="/CreateTeam" exact />
             <Route path="/signup">{<SignupPage />}</Route>
             <Route path="/login">{<LoginPage />}</Route>
-            <Route path="/ResourceCard">{<ResourceCard />}</Route>
-            <Route path="/searchResults" exact component={FilteredResults}></Route>
+            <Route path="/ResourceCard">{ResourceCard}</Route>
+            <Route path="/search" exact component={SearchNav}></Route>
           </Switch>
         </div>
-      </div>
-    </BrowserRouter>
+      </div >
+    </BrowserRouter >
   );
 }
 

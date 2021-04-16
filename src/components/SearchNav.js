@@ -4,24 +4,25 @@ import Home from '../pages/Home';
 import Teams from '../pages/Teams';
 import ResourceCard from '../components/ResourceCard';
 import NoResourcesFound from '../components/NoResourcesFound';
+
 const SearchNav = (props) => {
   const teamSearch = props.location.state.search.team;
   const resourceSearch = props.location.state.search.resourceSearch;
 
   const allInitialResources = props.location.state.resources;
-  console.log(allInitialResources[0].tags)
 
   const [_key, setKey] = useState('');
-  const [_defaultKey, setDefaultKey] = useState('Teams');
+  const defaultKey = 'Teams';
 
   useLayoutEffect(() => {
-    setDefaultKey(resourceSearch.length && !teamSearch.length ? 'Resources' : 'Teams')
-  }, [])
+    setKey(resourceSearch.length && !teamSearch.length ? 'Resources' : 'Teams')
+    console.log("props.location.state", props.location.state)
+  }, [props])
 
   return (
     <div>
       <Tabs defaultActiveKey={resourceSearch.length && !teamSearch.length ? 'Resources' : 'Teams'}
-        activeKey={_key.length && _key !== _defaultKey ? _key : _defaultKey}
+        activeKey={_key.length && _key !== defaultKey ? _key : defaultKey}
         id="controlled-tab-example"
         onSelect={(k) => setKey(k)}
       >
@@ -37,4 +38,5 @@ const SearchNav = (props) => {
     </div>
   );
 }
+
 export default SearchNav;

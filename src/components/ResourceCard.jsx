@@ -1,47 +1,56 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "./UserContext";
 
-const ResourceCard = ({ teamId }) => {
+const ResourceCard = (props) => {
   const [_resource, setResource] = useState([]);
   const [count, setCount] = useState(0);
   const { user } = useContext(UserContext);
 
-  // VARIABLES FOR FETCH
-  let url = "http://localhost:3000/resource/list";
-  let _payload = { teamId: teamId };
-  let fetchHeader = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(_payload),
-  };
+  useEffect(() => {
+    if (props.resources) {
+      setResource(props.resources.sort((a, b) => b.votes - a.votes));
+    }
+  }, []);
 
-  if (teamId === "allTeams") {
-    url = "http://localhost:3000/resource/listAll";
-    fetchHeader = {
-      method: "GET",
+  if (!props.resources) {
+    // VARIABLES FOR FETCH
+    let url = "http://localhost:3000/resource/list";
+    let _payload = { teamId: props.teamId };
+    let fetchHeader = {
+      method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(_payload),
     };
-  }
 
-  useEffect(() => {
-    fetch(url, fetchHeader)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // Sort the resources by default highest vote count to lowest
-        setResource(data.sort((a, b) => b.votes - a.votes));
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, [count]);
+    if (props.teamId === "allTeams") {
+      url = "http://localhost:3000/resource/listAll";
+      fetchHeader = {
+        method: "GET",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      };
+    }
+
+    useEffect(() => {
+      fetch(url, fetchHeader)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // Sort the resources by default highest vote count to lowest
+          setResource(data.sort((a, b) => b.votes - a.votes));
+          props.loadInitial(data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }, [count]);
+  }
 
   const handleUpvote = (event) => {
     event.preventDefault();
